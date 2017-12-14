@@ -25,6 +25,7 @@ public class RequisitingGoods {
 
     public int getAmount() {
         return amount;
+
     }
 
     public int getId() {
