@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sale.controllers.RequisitionPageController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="671.0" prefWidth="1000.0">
+         <children>
+            <TableView fx:id="tableViewGoods" layoutX="19.0" layoutY="200.0" prefHeight="301.0" prefWidth="451.0">
+              <columns>
+                <TableColumn fx:id="columnGoodsID" prefWidth="83.00003051757812" text="ID" />
+                <TableColumn fx:id="columnGoodsType" prefWidth="90.0" text="Type" />
+                  <TableColumn fx:id="columnGoodsBrand" prefWidth="118.0" text="Brand" />
+                  <TableColumn fx:id="columnGoodsName" prefWidth="158.0" text="Name" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tableViewReq" layoutX="528.0" layoutY="200.0" prefHeight="301.0" prefWidth="451.0">
+              <columns>
+                <TableColumn fx:id="columnReqID" prefWidth="96.0" text="ID" />
+                <TableColumn fx:id="columnReqType" prefWidth="82.0" text="Type" />
+                  <TableColumn fx:id="columnReqBrand" prefWidth="76.0" text="Brand" />
+                  <TableColumn fx:id="columnReqName" prefWidth="102.0" text="Name" />
+                  <TableColumn fx:id="columnReqAmount" prefWidth="94.0" text="Amount" />
+              </columns>
+            </TableView>
+            <Button layoutX="450.0" layoutY="549.0" mnemonicParsing="false" onAction="#saveRequisition" text="Save" />
+            <Button layoutX="502.0" layoutY="549.0" mnemonicParsing="false" onAction="#clearAll" text="Clear" />
+            <Button layoutX="481.0" layoutY="235.0" mnemonicParsing="false" onAction="#addGoods" text="Add" />
+            <Button layoutX="922.0" layoutY="516.0" mnemonicParsing="false" onAction="#removeGoods" text="Remove" />
+            <ComboBox fx:id="typeComboBox" editable="true" layoutX="73.0" layoutY="104.0" prefWidth="150.0" />
+            <ComboBox fx:id="brandComboBox" editable="true" layoutX="287.0" layoutY="104.0" prefWidth="150.0" />
+            <TextField fx:id="nameTextField" layoutX="74.0" layoutY="150.0" />
+            <Label layoutX="34.0" layoutY="108.0" text="Type" />
+            <Label layoutX="244.0" layoutY="108.0" text="Brand" />
+            <Label layoutX="32.0" layoutY="154.0" text="name" />
+            <Button layoutX="844.0" layoutY="99.0" mnemonicParsing="false" onAction="#addNewGoods" prefHeight="36.0" prefWidth="103.0" text="New Goods" />
+            <Label layoutX="505.0" layoutY="45.0" prefHeight="17.0" prefWidth="30.0" text="ใบเบิก" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
