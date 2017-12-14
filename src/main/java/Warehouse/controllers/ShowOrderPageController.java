@@ -21,7 +21,6 @@ import java.util.List;
 
 public class ShowOrderPageController {
 
-
     private DataManager dataManager;
     @FXML
     private Button pickAllBtn, pickBySlcBtn;

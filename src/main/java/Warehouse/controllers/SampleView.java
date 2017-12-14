@@ -42,7 +42,6 @@ public class SampleView {
 
                 }
 
-
             }
         }
         this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, Integer>("id"));

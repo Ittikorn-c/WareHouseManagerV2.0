@@ -19,7 +19,6 @@
                     </columns>
                   </TableView>
                   <TitledPane animated="false" collapsible="false" layoutX="221.0" layoutY="33.0" prefHeight="294.0" prefWidth="359.0" scaleShape="false" text="Items List">
-
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
