@@ -166,11 +166,22 @@ public class RequisitionPageController {
     }
 
     public String calRequisitionStatus(ArrayList<RequisitionGoods> requisitionGoodsList){
+        String status = "no item";
+        int numReGoods = requisitionGoodsList.size();
+        int temp = 0;
+        for(RequisitionGoods rg : requisitionGoodsList){
+            for(Goods g : dataManager.getGoodses()){
+                if (rg.getAmount() <= g.getQuantity()){
+                    temp++;
+                }
+            }
+        }
 
+        if(numReGoods == temp){
+            status = "have item";
+        }
 
-        
-
-        return "";
+        return status;
     }
 
     public DataManager getDataManager() {
