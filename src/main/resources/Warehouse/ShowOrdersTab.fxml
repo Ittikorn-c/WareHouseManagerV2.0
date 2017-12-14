@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Warehouse.controllers.ShowOrderPageController">
+  <tabs>
+    <Tab text="Orders">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="604.0">
+               <children>
+                  <TableView fx:id="orderIDTable" layoutX="42.0" layoutY="32.0" prefHeight="290.0" prefWidth="133.0">
+                    <columns>
+                      <TableColumn fx:id="orderIDCol" prefWidth="130.0" text="Order ID" />
+                    </columns>
+                  </TableView>
+                  <TitledPane animated="false" collapsible="false" layoutX="221.0" layoutY="33.0" prefHeight="294.0" prefWidth="359.0" scaleShape="false" text="Items List">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutY="1.0" prefHeight="228.0" prefWidth="357.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="ID" />
+                                  <TableColumn prefWidth="183.0" text="Name" />
+                                    <TableColumn prefWidth="101.0" text="Quantity" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="pickBySlcBtn" layoutX="245.0" layoutY="234.0" mnemonicParsing="false" text="Print by selected" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </TitledPane>
+                  <Button fx:id="pickAllBtn" layoutX="502.0" layoutY="334.0" mnemonicParsing="false" onAction="#printAllAction" text="Print All" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Untitled Tab 2">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
