@@ -42,8 +42,8 @@
             <Button layoutX="502.0" layoutY="549.0" mnemonicParsing="false" onAction="#clearAll" text="Clear" />
             <Button layoutX="481.0" layoutY="235.0" mnemonicParsing="false" onAction="#addGoods" text="Add" />
             <Button layoutX="922.0" layoutY="516.0" mnemonicParsing="false" onAction="#removeGoods" text="Remove" />
-            <ComboBox fx:id="typeComboBox" editable="true" layoutX="73.0" layoutY="104.0" prefWidth="150.0" />
-            <ComboBox fx:id="brandComboBox" editable="true" layoutX="287.0" layoutY="104.0" prefWidth="150.0" />
+            <ComboBox fx:id="typeComboBox" editable="true" layoutX="73.0" layoutY="104.0" onAction="#filterBrands" onKeyTyped="#filterTypeKeyType" prefWidth="150.0" />
+            <ComboBox fx:id="brandComboBox" editable="true" layoutX="287.0" layoutY="104.0" onAction="#filterTypes" onKeyTyped="#filterBrandKeyType" prefWidth="150.0" />
             <TextField fx:id="nameTextField" layoutX="74.0" layoutY="150.0" />
             <Label layoutX="34.0" layoutY="108.0" text="Type" />
             <Label layoutX="244.0" layoutY="108.0" text="Brand" />

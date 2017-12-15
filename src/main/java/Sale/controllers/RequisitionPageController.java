@@ -1,6 +1,5 @@
 package Sale.controllers;
 
-import Sale.dataSources.DBConnector;
 import Sale.models.Goods;
 import Sale.models.Requisition;
 import Sale.models.RequisitionGoods;
@@ -65,18 +64,17 @@ public class RequisitionPageController {
 
     private DataManager dataManager;
 
+    private ArrayList<String> allTypes;
+    private ArrayList<String> allBrands;
+
 
     @FXML
     public void initialize() {
 
-        typeComboBox.getItems().addAll("A", "ab", "bb", "ca", "dd","aaa");
-        String[] s = {"D","E"};
-        for (String ss : s){
-            typeComboBox.getItems().add(ss);
-        }
-
-
-        new ComboBoxAutoComplete<String>(typeComboBox);
+        allTypes = dataManager.getAllTypes();
+        allBrands = dataManager.getAllBrands();
+        typeComboBox.getItems().addAll(allTypes);
+        brandComboBox.getItems().addAll(allBrands);
 
         this.columnGoodsID.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("id"));
         this.columnGoodsType.setCellValueFactory(new PropertyValueFactory<Goods, String>("type"));
@@ -201,5 +199,51 @@ public class RequisitionPageController {
 
     public void setDataManager(DataManager dataManager) {
         this.dataManager = dataManager;
+    }
+
+    @FXML
+    public void filterTypeKeyType() {
+        ArrayList<String> filtered = new ArrayList<>();
+
+        for (String type : allTypes) {
+            if (type.contains(typeComboBox.getValue())) {
+                filtered.add(type);
+            }
+        }
+
+        typeComboBox.getItems().setAll(filtered);
+    }
+
+    @FXML
+    public void filterBrandKeyType() {
+        ArrayList<String> filtered = new ArrayList<>();
+
+        for (String brand : allBrands) {
+            if (brand.contains(brandComboBox.getValue())) {
+                filtered.add(brand);
+            }
+        }
+
+        brandComboBox.getItems().setAll(filtered);
+    }
+
+    @FXML
+    public void filterBrands() {
+        System.out.println("filter brands");
+        if (!"".equals(brandComboBox.getValue()))
+            return;
+
+        brandComboBox.getItems().clear();
+        brandComboBox.getItems().addAll(dataManager.getAllBrands(typeComboBox.getValue()));
+    }
+
+    @FXML
+    public void filterTypes() {
+        System.out.println("filter types");
+        if (!"".equals(typeComboBox.getValue()))
+            return;
+
+        typeComboBox.getItems().clear();
+        typeComboBox.getItems().addAll(dataManager.getAllTypes(brandComboBox.getValue()));
     }
 }

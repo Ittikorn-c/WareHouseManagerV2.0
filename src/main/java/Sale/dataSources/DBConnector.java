@@ -175,5 +175,49 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<String> getAllTypes(String brand) {
+        ArrayList<String> types = new ArrayList<>();
+
+        try {
+            connect();
+            String query = String.format("SELECT DISTINCT type FROM goodses WHERE brand LIKE '%s'", brand);
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                String type = resultSet.getString(1);
+                types.add(type);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return types;
+    }
+
+    public ArrayList<String> getAllBrands(String type) {
+        ArrayList<String> brands = new ArrayList<>();
+
+        try {
+            connect();
+            String query = String.format("SELECT DISTINCT brand FROM goodses WHERE type LIKE '%s'", type);
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                String brand = resultSet.getString(1);
+                brands.add(brand);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return brands;
+    }
 }
 

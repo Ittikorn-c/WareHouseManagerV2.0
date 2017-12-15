@@ -59,4 +59,20 @@ public class DataManager {
     public void updateGoods(Goods goods) {
         dbConnector.updateGoods(goods);
     }
+
+    public ArrayList<String> getAllTypes() {
+        return getAllTypes("%");
+    }
+
+    public ArrayList<String> getAllTypes(String brand) {
+        return dbConnector.getAllTypes(brand);
+    }
+
+    public ArrayList<String> getAllBrands() {
+        return getAllBrands("%");
+    }
+
+    public ArrayList<String> getAllBrands(String type) {
+        return dbConnector.getAllBrands(type);
+    }
 }
