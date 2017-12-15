@@ -68,6 +68,7 @@ public class ReqConfirmation {
     public void confirmHandle() {
         if (selectingReq != null) {
             selectingReq.setStatus("เบิกแล้ว");
+            dataManager.setRequisitionStatus(selectingReq.getId(), "เบิกแล้ว");
             reTableRe();
         }
     }

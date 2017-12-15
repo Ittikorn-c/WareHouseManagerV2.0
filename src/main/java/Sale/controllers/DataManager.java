@@ -17,6 +17,14 @@ public class DataManager {
         this.requisitions = getRequisitions();
     }
 
+    public void setRequisitionStatus(int id, String status) {
+        for (Requisition requisition : requisitions) {
+            if (requisition.getId() == id)
+                requisition.setStatus(status);
+        }
+        dbConnector.setRequisitionStatus(id, status);
+    }
+
     public void getAllGoods(){
         goodses = dbConnector.getAllGoodses();
     }

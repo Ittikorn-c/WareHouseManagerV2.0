@@ -143,5 +143,21 @@ public class DBConnector {
         return requisitionArrayList;
 
     }
+
+    public void setRequisitionStatus(int id, String status) {
+        try {
+            connect();
+            if (conn != null) {
+                String query = String.format("UPDATE requisitions SET status = %s WHERE req_id = %d", status, id);
+                Statement statement = conn.createStatement();
+                statement.executeUpdate(query);
+                conn.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
