@@ -176,5 +176,6 @@ public class PurchaseOrderPageController {
     public void saveOrder(){
         PurchaseOrder po = new PurchaseOrder((ArrayList<Goods>) listOrder);
         //this.dataManager.insertPurchaseOrder(pr);
+
     }
 }

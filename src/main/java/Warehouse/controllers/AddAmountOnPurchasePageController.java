@@ -24,6 +24,7 @@ public class AddAmountOnPurchasePageController {
 
     @FXML
     public void addOrder(){
+
         this.goods.setQuantity(Integer.parseInt(this.amountTextField.getText()));
         addBtn .getScene().getWindow().hide();
     }

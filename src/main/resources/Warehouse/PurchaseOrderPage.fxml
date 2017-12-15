@@ -25,7 +25,7 @@
                                  <children>
                                     <TableView layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
                                        <columns>
-                                          <TableColumn fx:id="columnGoodsID" prefWidth="83.00003051757812" text="ID" />
+                                          <TableColumn fx:id="" prefWidth="83.00003051757812" text="ID" />
                                           <TableColumn fx:id="columnGoodsType" prefWidth="90.0" text="Type" />
                                           <TableColumn fx:id="columnGoodsBrand" prefWidth="118.0" text="Brand" />
                                           <TableColumn fx:id="columnGoodsName" prefWidth="158.0" text="Name" />

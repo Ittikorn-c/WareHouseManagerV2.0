@@ -8,4 +8,5 @@ public class PurchaseOrder {
         this.listGoods = listGoods;
     }
 
+
 }
