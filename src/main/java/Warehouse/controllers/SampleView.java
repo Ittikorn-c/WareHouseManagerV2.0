@@ -1,6 +1,7 @@
 package Warehouse.controllers;
 
 
+import Sale.controllers.DataManager;
 import Sale.models.Requisition;
 import Sale.models.RequisitionGoods;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ public class SampleView {
     @FXML
     private TableColumn<RequisitionGoods,String> typeCol, brandCol, nameCol;
 
-
+    private DataManager dataManager;
     public SampleView() {
     }
     @FXML
@@ -68,7 +69,9 @@ public class SampleView {
             }
         }
 
-
+        for (Requisition rq: requisitionList) {
+            dataManager.setRequisitionStatus(rq.getId(),"picking");
+        }
         observableList = FXCollections.observableList(requisitionGoodsList);
         reqGoodsLstTableView.setItems(observableList);
     }
@@ -80,5 +83,9 @@ public class SampleView {
 
     public void setRequisitionList(List<Requisition> requisitionList) {
         this.requisitionList = requisitionList;
+    }
+
+    public void setDataManager(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 }
