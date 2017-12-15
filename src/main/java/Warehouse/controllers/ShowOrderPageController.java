@@ -2,6 +2,7 @@ package Warehouse.controllers;
 
 import Sale.controllers.DataManager;
 import Sale.models.Requisition;
+import Sale.models.RequisitionGoods;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,13 +26,24 @@ public class ShowOrderPageController {
     @FXML
     private Button pickAllBtn, pickBySlcBtn;
     @FXML
-    private TableView orderIDTable;
+    private TableView orderIDTable, reqGoodsLstTableView;
     @FXML
     private TableColumn<Requisition,Integer> orderIDCol;
+    @FXML
+    private TableColumn<RequisitionGoods,Integer> idCol, quanCol;
+    @FXML
+    private TableColumn<RequisitionGoods,String> typeCol, brandCol, nameCol;
+//    @FXML
+//    private TableColumn<RequisitionGoods,Integer> idItemCol, quanItemCol;
+//    @FXML
+//    private TableColumn<RequisitionGoods,String> nameItemCol;
 
     private List<Requisition> requisitionList = new ArrayList<Requisition>();
-    private ObservableList<Requisition> observableListOrder;
-
+    private List<Requisition> requisitionListBySelected = new ArrayList<Requisition>();
+//    private List<RequisitionGoods> itemsLst = new ArrayList<RequisitionGoods>();
+    private List<RequisitionGoods> RequisitionGoodsList = new ArrayList<RequisitionGoods>();
+    private ObservableList<Requisition> observableListReq;
+    private ObservableList<RequisitionGoods> observableListItems;
 
 
     @FXML
@@ -40,12 +52,34 @@ public class ShowOrderPageController {
 
         this.orderIDCol.setCellValueFactory(new PropertyValueFactory<Requisition, Integer>("id"));
 
-        observableListOrder = FXCollections.observableArrayList(requisitionList);
-        orderIDTable.setItems(observableListOrder);
+        observableListReq = FXCollections.observableArrayList(requisitionList);
+        orderIDTable.setItems(observableListReq);
+
+        this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
+        this.typeCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
+        this.brandCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
+        this.nameCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("name"));
+        this.quanCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("amount"));
+
+        observableListItems = FXCollections.observableArrayList(RequisitionGoodsList);
+        reqGoodsLstTableView.setItems(observableListItems);
+
 
     }
     public void loadReq(){
         this.requisitionList = dataManager.getRequisitions();
+    }
+
+    public void showAction(ActionEvent actionEvent) {
+        Requisition req = (Requisition) reqGoodsLstTableView.getSelectionModel().getSelectedItem();
+        for (RequisitionGoods rg: req.getRequisitionGoodsArrayList()) {
+            RequisitionGoods RequisitionGoods = new RequisitionGoods(rg.getId(),rg.getType(),rg.getBrand(),rg.getName(),rg.getAmount());
+            RequisitionGoodsList.add(RequisitionGoods);
+        }
+
+        observableListItems = FXCollections.observableArrayList(RequisitionGoodsList);
+        reqGoodsLstTableView.setItems(observableListItems);
+
     }
 
     public void printAllAction(ActionEvent actionEvent) {
@@ -59,9 +93,11 @@ public class ShowOrderPageController {
             print by selected
              */
             if((Requisition)orderIDTable.getSelectionModel().getSelectedItem()!= null){
-                this.requisitionList.add((Requisition)orderIDTable.getSelectionModel().getSelectedItem());
-            }
-            controller.setRequisitionList(this.requisitionList);
+                this.requisitionListBySelected.add((Requisition)orderIDTable.getSelectionModel().getSelectedItem());
+                controller.setRequisitionList(requisitionListBySelected);
+
+            }else {controller.setRequisitionList(this.requisitionList);}
+
             stage.setTitle("Overview");
             stage.showAndWait();
 

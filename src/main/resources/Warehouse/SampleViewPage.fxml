@@ -6,20 +6,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="369.0" text="Requisiting Goods List" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Warehouse.controllers.SampleView">
+<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="453.0" text="Requisiting Goods List" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.SampleView">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <TableView fx:id="reqGoodsLstTableView" layoutX="-2.0" prefHeight="301.0" prefWidth="377.0">
+            <TableView fx:id="reqGoodsLstTableView" prefHeight="343.0" prefWidth="453.0">
               <columns>
-                <TableColumn fx:id="nameCol" prefWidth="187.0" text="Name" />
-                  <TableColumn fx:id="idCol" prefWidth="187.0" text="ID" />
-                  <TableColumn fx:id="typeCol" prefWidth="187.0" text="Type" />
-                  <TableColumn fx:id="brandCol" prefWidth="187.0" text="Brand" />
-                <TableColumn fx:id="quanCol" prefWidth="189.0" text="Quantity" />
+                  <TableColumn fx:id="idCol" minWidth="2.0" prefWidth="55.0" text="ID" />
+                  <TableColumn fx:id="typeCol" prefWidth="100.0" text="Type" />
+                  <TableColumn fx:id="brandCol" prefWidth="102.0" text="Brand" />
+                <TableColumn fx:id="nameCol" prefWidth="97.0" text="Name" />
+                <TableColumn fx:id="quanCol" prefWidth="96.0" text="Quantity" />
               </columns>
             </TableView>
-            <Button fx:id="printBtn" layoutX="281.0" layoutY="309.0" mnemonicParsing="false" text="Print" />
+            <Button fx:id="printBtn" layoutX="379.0" layoutY="357.0" mnemonicParsing="false" text="Print" />
          </children></AnchorPane>
   </content>
 </TitledPane>

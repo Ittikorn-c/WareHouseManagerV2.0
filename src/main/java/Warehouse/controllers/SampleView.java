@@ -3,7 +3,6 @@ package Warehouse.controllers;
 
 import Sale.models.Requisition;
 import Sale.models.RequisitionGoods;
-import Warehouse.models.RequisitingGoods;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,14 +16,14 @@ import java.util.List;
 public class SampleView {
 
     private List<Requisition> requisitionList = new ArrayList<Requisition>();
-    private List<RequisitingGoods> requisitingGoodsList = new ArrayList<RequisitingGoods>();
-    private ObservableList<RequisitingGoods> observableList;
+    private List<RequisitionGoods> RequisitionGoodsList = new ArrayList<RequisitionGoods>();
+    private ObservableList<RequisitionGoods> observableList;
     @FXML
     private TableView reqGoodsLstTableView;
     @FXML
-    private TableColumn<RequisitingGoods,Integer> idCol, quanCol;
+    private TableColumn<RequisitionGoods,Integer> idCol, quanCol;
     @FXML
-    private TableColumn<RequisitingGoods,String> typeCol, brandCol, nameCol;
+    private TableColumn<RequisitionGoods,String> typeCol, brandCol, nameCol;
 
 
     public SampleView() {
@@ -33,24 +32,24 @@ public class SampleView {
     public void initialize(){
         for (Requisition r : requisitionList) {
             for (RequisitionGoods req: r.getRequisitionGoodsArrayList()) {
-                for (RequisitingGoods reqTing :requisitingGoodsList) {
+                for (RequisitionGoods reqTing :RequisitionGoodsList) {
                     if(req.getId() == reqTing.getId()){
                         reqTing.setAmount(req.getAmount()+ reqTing.getAmount());
                         break;
                     }
-                    requisitingGoodsList.add(new RequisitingGoods(req.getId(), req.getType(), req.getBrand(),req.getName(),req.getAmount()));
+                    RequisitionGoodsList.add(new RequisitionGoods(req.getId(), req.getType(), req.getBrand(),req.getName(),req.getAmount()));
 
                 }
 
             }
         }
-        this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, Integer>("id"));
-        this.typeCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, String>("type"));
-        this.brandCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, String>("brand"));
-        this.nameCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, String>("name"));
-        this.quanCol.setCellValueFactory(new PropertyValueFactory<RequisitingGoods, Integer>("amount"));
+        this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
+        this.typeCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
+        this.brandCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
+        this.nameCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("name"));
+        this.quanCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("amount"));
 
-        observableList = FXCollections.observableList(requisitingGoodsList);
+        observableList = FXCollections.observableList(RequisitionGoodsList);
         reqGoodsLstTableView.setItems(observableList);
 
     }

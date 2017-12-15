@@ -7,42 +7,70 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Warehouse.controllers.ShowOrderPageController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="666.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowOrderPageController">
   <tabs>
     <Tab text="Orders">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="604.0">
                <children>
-                  <TableView fx:id="orderIDTable" layoutX="42.0" layoutY="32.0" prefHeight="290.0" prefWidth="133.0">
+                  <TableView fx:id="orderIDTable" layoutX="19.0" layoutY="32.0" prefHeight="290.0" prefWidth="133.0">
                     <columns>
                         <!---->
                       <TableColumn fx:id="orderIDCol" prefWidth="130.0" text="Order ID" />
                     </columns>
                   </TableView>
-                  <TitledPane animated="false" collapsible="false" layoutX="221.0" layoutY="33.0" prefHeight="294.0" prefWidth="359.0" scaleShape="false" text="Items List">
+                  <TitledPane animated="false" collapsible="false" layoutX="221.0" layoutY="33.0" prefHeight="294.0" prefWidth="440.0" scaleShape="false" text="Items List">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="1.0" prefHeight="228.0" prefWidth="357.0">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="ID" />
-                                  <TableColumn prefWidth="183.0" text="Name" />
-                                    <TableColumn prefWidth="101.0" text="Quantity" />
-                                </columns>
+                              <Button fx:id="pickBySlcBtn" layoutX="314.0" layoutY="233.0" mnemonicParsing="false" onAction="#printAllAction" text="Print by selected" />
+                              <TableView fx:id="reqGoodsLstTableView" layoutX="-1.0" prefHeight="229.0" prefWidth="440.0">
+                                 <columns>
+                                    <TableColumn fx:id="idCol" minWidth="2.0" prefWidth="55.0" text="ID" />
+                                    <TableColumn fx:id="typeCol" prefWidth="100.0" text="Type" />
+                                    <TableColumn fx:id="brandCol" prefWidth="102.0" text="Brand" />
+                                    <TableColumn fx:id="nameCol" prefWidth="97.0" text="Name" />
+                                    <TableColumn fx:id="quanCol" prefWidth="96.0" text="Quantity" />
+                                    <TableColumn fx:id="quanItemCol" prefWidth="101.0" text="Quantity" />
+                                 </columns>
                               </TableView>
-                              <Button fx:id="pickBySlcBtn" layoutX="245.0" layoutY="234.0" mnemonicParsing="false" text="Print by selected" />
                            </children>
                         </Pane>
                      </content>
                   </TitledPane>
-                  <Button fx:id="pickAllBtn" layoutX="502.0" layoutY="334.0" mnemonicParsing="false" onAction="#printAllAction" text="Print All" />
+                  <Button fx:id="pickAllBtn" layoutX="568.0" layoutY="332.0" mnemonicParsing="false" onAction="#printAllAction" text="Print All" />
+                  <Button fx:id="showBtn" layoutX="163.0" layoutY="155.0" mnemonicParsing="false" onAction="#showAction" text="Show" />
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Untitled Tab 2">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
+    <Tab text="Confirmation">
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="orderIDTableCon" layoutX="46.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
+                     <columns>
+                        <TableColumn fx:id="orderIDColCon" prefWidth="130.0" text="Order ID" />
+                     </columns>
+                  </TableView>
+                  <TitledPane animated="false" collapsible="false" layoutX="210.0" layoutY="39.0" prefHeight="294.0" prefWidth="359.0" scaleShape="false" text="Items List">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutY="1.0" prefHeight="228.0" prefWidth="357.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="ID" />
+                                    <TableColumn prefWidth="183.0" text="Name" />
+                                    <TableColumn prefWidth="101.0" text="Quantity" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="pickBySlcBtn1" layoutX="271.0" layoutY="235.0" mnemonicParsing="false" text="Confirm" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </TitledPane>
+               </children>
+            </Pane>
+         </content>
     </Tab>
   </tabs>
 </TabPane>
