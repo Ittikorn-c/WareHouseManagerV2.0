@@ -2,7 +2,8 @@ package Warehouse.controllers;
 
 import Sale.controllers.DataManager;
 import Sale.models.Goods;
-import Sale.models.PurchaseOrder;
+import Sale.models.Requisition;
+import Sale.models.RequisitionGoods;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,10 +25,11 @@ public class PurchaseOrderPageController {
     private DataManager dataManager;
     public List<Goods> listGoods = new ArrayList();
     public ObservableList<Goods> observableListGoods;
-    public List<Goods> listOrder = new ArrayList();
-    public ObservableList<Goods> observableListOrder;
-    public List<Goods> listImportantToOrder = new ArrayList();
-    public ObservableList<Goods> observableListImportantToOrder;
+    public List<RequisitionGoods> listOrder = new ArrayList();
+    public ObservableList<RequisitionGoods> observableListOrder;
+    public List<RequisitionGoods> listImportantToOrder = new ArrayList();
+    public List<RequisitionGoods> importantToOrderlist = new ArrayList();
+    public ObservableList<RequisitionGoods> observableListImportantToOrder;
     @FXML
     TableView tableViewGoods;
     @FXML
@@ -53,15 +55,15 @@ public class PurchaseOrderPageController {
     @FXML
     TableView tableViewImportantToOrder;
     @FXML
-    TableColumn<Goods, Integer> columnImportantToOrderID;
+    TableColumn<RequisitionGoods, Integer> columnImportantToOrderID;
     @FXML
-    TableColumn<Goods, String> columnImportantToOrderType;
+    TableColumn<RequisitionGoods, String> columnImportantToOrderType;
     @FXML
-    TableColumn<Goods, String> columnImportantToOrderBrand;
+    TableColumn<RequisitionGoods, String> columnImportantToOrderBrand;
     @FXML
-    TableColumn<Goods, String> columnImportantToOrderName;
+    TableColumn<RequisitionGoods, String> columnImportantToOrderName;
     @FXML
-    TableColumn<Goods, Integer> columnImportantToOrderAmount;
+    TableColumn<RequisitionGoods, Integer> columnImportantToOrderAmount;
     @FXML
     ComboBox<String> typeComboBox;
     @FXML
@@ -99,39 +101,85 @@ public class PurchaseOrderPageController {
         observableListOrder = FXCollections.observableArrayList(listOrder);
         tableViewOrder.setItems(observableListOrder);
 
-        this.columnImportantToOrderID.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("id"));
-        this.columnImportantToOrderType.setCellValueFactory(new PropertyValueFactory<Goods, String>("type"));
-        this.columnImportantToOrderBrand.setCellValueFactory(new PropertyValueFactory<Goods, String>("brand"));
-        this.columnImportantToOrderName.setCellValueFactory(new PropertyValueFactory<Goods, String>("name"));
-        this.columnImportantToOrderAmount.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("amount"));
+        this.columnImportantToOrderID.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
+        this.columnImportantToOrderType.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
+        this.columnImportantToOrderBrand.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
+        this.columnImportantToOrderName.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("name"));
+        this.columnImportantToOrderAmount.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("amount"));
 
         observableListImportantToOrder = FXCollections.observableArrayList(listImportantToOrder);
         tableViewImportantToOrder.setItems(observableListOrder);
     }
 
 
-    public void setDataManager(DataManager dataManager) {
-        this.dataManager = dataManager;
+    public void reTableGoods() {
         for(Goods g : dataManager.getGoodses()){
             listGoods.add(g);
         }
-        /*for(Goods g : dataManager.getNotEnoughGoodses()){
-            listImportantToOrder.add(g);
-        }*/
+
         observableListGoods = FXCollections.observableArrayList(listGoods);
         tableViewGoods.setItems(observableListGoods);
-        observableListGoods = FXCollections.observableArrayList(listImportantToOrder);
-        tableViewGoods.setItems(observableListImportantToOrder);
 
+    }
+
+    public void reTableImp(){
+        for (Requisition r : dataManager.getRequisitions()){
+            if(r.getStatus().equals("no")) {
+                for (RequisitionGoods rg : r.getRequisitionGoodsArrayList()) {
+                    listImportantToOrder.add(rg);
+                }
+            }
+        }
+
+        ArrayList<Integer> num = new ArrayList<Integer>();
+
+        for (RequisitionGoods reqTing :listImportantToOrder) {
+            if (!num.contains(reqTing.getId())){
+                num.add(reqTing.getId());
+                importantToOrderlist.add(reqTing);
+            }
+            else{
+                for(RequisitionGoods g : importantToOrderlist){
+                    if(g.getId() == reqTing.getId()){
+                        g.setAmount(g.getAmount()+reqTing.getAmount());
+                    }
+                }
+            }
+        }
+
+        for (RequisitionGoods rg : importantToOrderlist){
+            for (Goods g : dataManager.getGoodses()){
+                if (rg.getId() == g.getId()){
+                    if (rg.getAmount() > g.getQuantity()){
+                        int result = Math.abs(rg.getAmount() - g.getQuantity());
+                        rg.setAmount(result);
+                    }
+                    else{
+                        rg.setAmount(0);
+                    }
+                }
+            }
+        }
+        int i = 0;
+        while (i<importantToOrderlist.size()) {
+            if(importantToOrderlist.get(i).getAmount()==0){
+                importantToOrderlist.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+        observableListImportantToOrder = FXCollections.observableArrayList(importantToOrderlist);
+        tableViewImportantToOrder.setItems(observableListImportantToOrder);
     }
 
     @FXML
     public void addOrder(){
         Goods g = (Goods) this.tableViewGoods.getSelectionModel().getSelectedItem();
-        Goods order = new Goods(g.getId(), g.getType(), g.getBrand(), g.getName(), g.getQuantity());
+        RequisitionGoods order = new RequisitionGoods(g.getId(), g.getType(), g.getBrand(), g.getName(), g.getQuantity());
 
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PurchaseOrderResources/AddAmountPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Warehouse/AddAmountPage.fxml"));
 
         try {
             stage.setScene(new Scene((Parent) loader.load()));
@@ -140,7 +188,7 @@ public class PurchaseOrderPageController {
             controller.typeLabel.setText(g.getType());
             controller.brandLabel.setText(g.getBrand());
             controller.nameLabel.setText(g.getName());
-            controller.goods = order;
+            controller.setGoods(order);
             stage.setTitle("Appointment list");
             stage.showAndWait();
 
@@ -167,15 +215,23 @@ public class PurchaseOrderPageController {
 
     @FXML
     public void cancelOrder(){
-        listOrder = new ArrayList<Goods>();
+        listOrder = new ArrayList<RequisitionGoods>();
         observableListOrder = FXCollections.observableArrayList(listOrder);
         tableViewOrder.setItems(observableListOrder);
     }
 
     @FXML
     public void saveOrder(){
-        PurchaseOrder po = new PurchaseOrder((ArrayList<Goods>) listOrder);
-        //this.dataManager.insertPurchaseOrder(pr);
+//        PurchaseOrder po = new PurchaseOrder((ArrayList<Goods>) listOrder);
+//        //this.dataManager.insertPurchaseOrder(pr);
 
+    }
+
+    public DataManager getDataManager() {
+        return dataManager;
+    }
+
+    public void setDataManager(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 }

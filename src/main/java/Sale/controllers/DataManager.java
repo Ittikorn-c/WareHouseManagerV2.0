@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DataManager {
     private ArrayList<Goods> goodses = new ArrayList<Goods>();
     private ArrayList<Requisition> requisitions = new ArrayList<Requisition>();
+    private ArrayList<Requisition> purchases = new ArrayList<Requisition>();
     private DBConnector dbConnector = new DBConnector();
 
     public DataManager(){
@@ -53,5 +54,9 @@ public class DataManager {
 
     public void setRequisitions(ArrayList<Requisition> requisitions) {
         this.requisitions = requisitions;
+    }
+
+    public void updateGoods(Goods goods) {
+        dbConnector.updateGoods(goods);
     }
 }

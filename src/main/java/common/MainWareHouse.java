@@ -2,7 +2,6 @@ package common;
 
 
 import Sale.controllers.DataManager;
-import Warehouse.controllers.ReqConfirmation;
 import Warehouse.controllers.ShowsOrderPageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,16 +18,19 @@ public class MainWareHouse extends Application {
 
         primaryStage.setScene(new Scene((Parent) root.load(), 1000, 600));
         primaryStage.setTitle("Hello World");
-        primaryStage.show();
 
         ShowsOrderPageController controller = root.getController();
+
         controller.setDataManager(dataManager);
         controller.reTableConfirm();
         controller.reTableRe();
+        controller.reTableGoods();
+        controller.reTableImp();
+        controller.reTablePetch();
         System.out.println(controller);
         System.out.println("test##########################################################################");
 
-        controller.setDataManager(dataManager);
+        primaryStage.show();
     }
 
 

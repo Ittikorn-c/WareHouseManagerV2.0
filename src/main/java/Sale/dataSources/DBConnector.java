@@ -159,5 +159,21 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
+
+    public void updateGoods(Goods goods) {
+        try {
+            connect();
+            if (conn != null) {
+                String query = String.format("UPDATE goodses SET quantity = %d WHERE id = %d",goods.getQuantity(), goods.getId());
+                Statement statement = conn.createStatement();
+                statement.executeUpdate(query);
+                conn.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

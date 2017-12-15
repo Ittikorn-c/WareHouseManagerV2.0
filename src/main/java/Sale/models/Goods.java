@@ -2,12 +2,12 @@ package Sale.models;
 
 public class Goods {
 
-    private int id;
-    private String type;
-    private String brand;
-    private String name;
-    private int quantity;
-//    private int available;
+    protected int id;
+    protected String type;
+    protected String brand;
+    protected String name;
+    protected int quantity;
+//    protected int available;
 
     public Goods(int id, String type, String brand, String name, int quantity) {
         this.id = id;

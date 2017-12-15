@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="784.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.PurchaseOrderPageController">
+<AnchorPane prefHeight="784.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.PurchaseOrderPageController">
    <children>
       <TabPane prefHeight="777.0" prefWidth="1196.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -23,9 +23,9 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
                                  <children>
-                                    <TableView layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                    <TableView fx:id="tableViewGoods" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
                                        <columns>
-                                          <TableColumn fx:id="" prefWidth="83.00003051757812" text="ID" />
+                                          <TableColumn fx:id="columnGoodsID" prefWidth="83.00003051757812" text="ID" />
                                           <TableColumn fx:id="columnGoodsType" prefWidth="90.0" text="Type" />
                                           <TableColumn fx:id="columnGoodsBrand" prefWidth="118.0" text="Brand" />
                                           <TableColumn fx:id="columnGoodsName" prefWidth="158.0" text="Name" />
@@ -39,23 +39,23 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
                                  <children>
-                                    <TableView layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                    <TableView fx:id="tableViewOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
                                        <columns>
-                                          <TableColumn fx:id="columnGoodsID1" prefWidth="83.00003051757812" text="ID" />
-                                          <TableColumn fx:id="columnGoodsType1" prefWidth="90.0" text="Type" />
-                                          <TableColumn fx:id="columnGoodsBrand1" prefWidth="98.0" text="Brand" />
-                                          <TableColumn fx:id="columnGoodsName1" prefWidth="90.0" text="Name" />
-                                          <TableColumn prefWidth="87.0" text="Amount" />
+                                          <TableColumn fx:id="columnOrderID" prefWidth="83.00003051757812" text="ID" />
+                                          <TableColumn fx:id="columnOrderType" prefWidth="90.0" text="Type" />
+                                          <TableColumn fx:id="columnOrderBrand" prefWidth="98.0" text="Brand" />
+                                          <TableColumn fx:id="columnOrderName" prefWidth="90.0" text="Name" />
+                                          <TableColumn fx:id="columnOrderAmount" prefWidth="87.0" text="Amount" />
                                        </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <ComboBox layoutX="100.0" layoutY="187.0" prefWidth="150.0" />
-                        <ComboBox layoutX="368.0" layoutY="187.0" prefWidth="150.0" />
-                        <TextField layoutX="100.0" layoutY="275.0" />
-                        <Button layoutX="531.0" layoutY="495.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="75.0" text="Add " />
+                        <ComboBox fx:id="typeComboBox" layoutX="100.0" layoutY="187.0" prefWidth="150.0" />
+                        <ComboBox fx:id="brandComboBox" layoutX="368.0" layoutY="187.0" prefWidth="150.0" />
+                        <TextField fx:id="nameTextField" layoutX="100.0" layoutY="275.0" />
+                        <Button fx:id="addBtn" layoutX="531.0" layoutY="495.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="35.0" prefWidth="75.0" text="Add " />
                         <Button layoutX="531.0" layoutY="574.0" mnemonicParsing="false" text="Remove" />
                         <Button layoutX="1084.0" layoutY="627.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="102.0" text="Save" />
                         <Button layoutX="1083.0" layoutY="679.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="104.0" text="Cancle" />
@@ -63,13 +63,13 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
                                  <children>
-                                    <TableView layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                    <TableView fx:id="tableViewImportantToOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
                                        <columns>
-                                          <TableColumn fx:id="columnGoodsID11" prefWidth="85.0" text="ID" />
-                                          <TableColumn fx:id="columnGoodsType11" prefWidth="81.0" text="Type" />
-                                          <TableColumn fx:id="columnGoodsBrand11" prefWidth="90.0" text="Brand" />
-                                          <TableColumn fx:id="columnGoodsName11" prefWidth="101.0" text="Name" />
-                                          <TableColumn prefWidth="87.0" text="Amount" />
+                                          <TableColumn fx:id="columnImportantToOrderID" prefWidth="85.0" text="ID" />
+                                          <TableColumn fx:id="columnImportantToOrderType" prefWidth="81.0" text="Type" />
+                                          <TableColumn fx:id="columnImportantToOrderBrand" prefWidth="90.0" text="Brand" />
+                                          <TableColumn fx:id="columnImportantToOrderName" prefWidth="101.0" text="Name" />
+                                          <TableColumn fx:id="columnImportantToOrderAmount" prefWidth="87.0" text="Amount" />
                                        </columns>
                                     </TableView>
                                  </children>

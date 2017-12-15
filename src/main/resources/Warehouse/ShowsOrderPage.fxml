@@ -2,17 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.TitledPane?>
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="846.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowsOrderPageController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1209.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowsOrderPageController">
   <tabs>
       <Tab text="Orders">
           <content>
@@ -48,29 +48,6 @@
                   </children></AnchorPane>
           </content>
       </Tab>
-      <Tab text="Add New Goods">
-          <content>
-              <Pane prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                      <TableView fx:id="tableViewGoods" layoutX="32.0" layoutY="149.0" prefHeight="337.0" prefWidth="470.0">
-                          <columns>
-                              <TableColumn fx:id="columnGoodsID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="columnGoodsType" prefWidth="81.0" text="Type" />
-                              <TableColumn fx:id="columnGoodsBrand" prefWidth="108.0" text="Brand" />
-                              <TableColumn fx:id="columnGoodsName" prefWidth="205.0" text="Name" />
-                          </columns>
-                      </TableView>
-                      <ComboBox layoutX="87.0" layoutY="43.0" prefWidth="150.0" />
-                      <ComboBox layoutX="299.0" layoutY="43.0" prefWidth="150.0" />
-                      <TextField layoutX="88.0" layoutY="101.0" />
-                      <Text layoutX="32.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
-                      <Text layoutX="32.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                      <Text layoutX="267.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand" />
-                      <Button layoutX="538.0" layoutY="210.0" mnemonicParsing="false" text="ADD" />
-                  </children>
-              </Pane>
-          </content>
-      </Tab>
       <Tab text="Confirmation">
           <content>
               <Pane prefHeight="200.0" prefWidth="200.0">
@@ -103,5 +80,128 @@
               </Pane>
           </content>
       </Tab>
+      <Tab text="Purchase Order">
+          <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                      <TitledPane animated="false" collapsible="false" layoutX="56.0" layoutY="369.0" text="Goods List">
+                          <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                                  <children>
+                                      <TableView fx:id="poTableViewGoods" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                          <columns>
+                                              <TableColumn fx:id="poColumnGoodsID" prefWidth="83.00003051757812" text="ID" />
+                                              <TableColumn fx:id="poColumnGoodsType" prefWidth="90.0" text="Type" />
+                                              <TableColumn fx:id="poColumnGoodsBrand" prefWidth="118.0" text="Brand" />
+                                              <TableColumn fx:id="poColumnGoodsName" prefWidth="158.0" text="Name" />
+                                          </columns>
+                                      </TableView>
+                                  </children>
+                              </AnchorPane>
+                          </content>
+                      </TitledPane>
+                      <TitledPane animated="false" collapsible="false" layoutX="622.0" layoutY="369.0" text="Order List">
+                          <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                                  <children>
+                                      <TableView fx:id="tableViewOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                          <columns>
+                                              <TableColumn fx:id="columnOrderID" prefWidth="83.00003051757812" text="ID" />
+                                              <TableColumn fx:id="columnOrderType" prefWidth="90.0" text="Type" />
+                                              <TableColumn fx:id="columnOrderBrand" prefWidth="98.0" text="Brand" />
+                                              <TableColumn fx:id="columnOrderName" prefWidth="90.0" text="Name" />
+                                              <TableColumn fx:id="columnOrderAmount" prefWidth="87.0" text="Amount" />
+                                          </columns>
+                                      </TableView>
+                                  </children>
+                              </AnchorPane>
+                          </content>
+                      </TitledPane>
+                      <ComboBox fx:id="typeComboBox" layoutX="100.0" layoutY="187.0" prefWidth="150.0" />
+                      <ComboBox fx:id="brandComboBox" layoutX="368.0" layoutY="187.0" prefWidth="150.0" />
+                      <TextField fx:id="nameTextField" layoutX="100.0" layoutY="275.0" />
+                      <Button fx:id="addBtn" layoutX="531.0" layoutY="495.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="35.0" prefWidth="75.0" text="Add " />
+                      <Button layoutX="531.0" layoutY="574.0" mnemonicParsing="false" onAction="#deleteOrder" text="Remove" />
+                      <Button layoutX="1084.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveOrder" prefHeight="37.0" prefWidth="102.0" text="Save" />
+                      <Button layoutX="1083.0" layoutY="679.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="32.0" prefWidth="104.0" text="Cancle" />
+                      <TitledPane animated="false" collapsible="false" layoutX="622.0" layoutY="16.0" pickOnBounds="false" text="Not enough in warehouse for Requisition ">
+                          <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                                  <children>
+                                      <TableView fx:id="tableViewImportantToOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                          <columns>
+                                              <TableColumn fx:id="columnImportantToOrderID" prefWidth="85.0" text="ID" />
+                                              <TableColumn fx:id="columnImportantToOrderType" prefWidth="81.0" text="Type" />
+                                              <TableColumn fx:id="columnImportantToOrderBrand" prefWidth="90.0" text="Brand" />
+                                              <TableColumn fx:id="columnImportantToOrderName" prefWidth="101.0" text="Name" />
+                                              <TableColumn fx:id="columnImportantToOrderAmount" prefWidth="87.0" text="Amount" />
+                                          </columns>
+                                      </TableView>
+                                  </children>
+                              </AnchorPane>
+                          </content>
+                      </TitledPane>
+                      <Label layoutX="39.0" layoutY="192.0" text="Type" />
+                      <Label layoutX="297.0" layoutY="192.0" text="Brand" />
+                      <Label layoutX="38.0" layoutY="280.0" text="Name" />
+                  </children>
+              </AnchorPane>
+          </content>
+      </Tab>
+      <Tab text="Add New Goods">
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="poTableView" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
+                     <columns>
+                        <TableColumn fx:id="poIDCol" prefWidth="130.0" text="PO ID" />
+                     </columns>
+                  </TableView>
+                  <TitledPane animated="false" collapsible="false" layoutX="215.0" layoutY="39.0" prefHeight="294.0" prefWidth="499.0" scaleShape="false" text="Items List">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="poItemTableView" layoutY="1.0" prefHeight="228.0" prefWidth="498.0">
+                                 <columns>
+                                    <TableColumn fx:id="poItemIdCol" prefWidth="61.0" text="ID" />
+                                    <TableColumn fx:id="poItemTypeCol" prefWidth="104.0" text="Type" />
+                                    <TableColumn fx:id="poItemBrandCol" prefWidth="103.0" text="Brand" />
+                                    <TableColumn fx:id="poItemNameCol" prefWidth="154.0" text="Name" />
+                                    <TableColumn fx:id="poItemQuanCol" prefWidth="66.0" text="Quantity" />
+                                 </columns>
+                              </TableView>
+                              <Button layoutX="424.0" layoutY="229.0" mnemonicParsing="false" onAction="#addPOItem" prefHeight="25.0" prefWidth="61.0" text="Add" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </TitledPane>
+                  <Button layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#showPOItem" prefHeight="25.0" prefWidth="54.0" text="Show" />
+               </children>
+            </Pane>
+         </content>
+      </Tab>
+      <!--<Tab text="Add New Goods">-->
+          <!--<content>-->
+              <!--<Pane prefHeight="200.0" prefWidth="200.0">-->
+                  <!--<children>-->
+                      <!--<TableView fx:id="tableViewGoods" layoutX="32.0" layoutY="149.0" prefHeight="337.0" prefWidth="470.0">-->
+                          <!--<columns>-->
+                              <!--<TableColumn fx:id="columnGoodsID" prefWidth="75.0" text="ID" />-->
+                              <!--<TableColumn fx:id="columnGoodsType" prefWidth="81.0" text="Type" />-->
+                              <!--<TableColumn fx:id="columnGoodsBrand" prefWidth="108.0" text="Brand" />-->
+                              <!--<TableColumn fx:id="columnGoodsName" prefWidth="205.0" text="Name" />-->
+                          <!--</columns>-->
+                      <!--</TableView>-->
+                      <!--<ComboBox layoutX="87.0" layoutY="43.0" prefWidth="150.0" />-->
+                      <!--<ComboBox layoutX="299.0" layoutY="43.0" prefWidth="150.0" />-->
+                      <!--<TextField layoutX="88.0" layoutY="101.0" />-->
+                      <!--<Text layoutX="32.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />-->
+                      <!--<Text layoutX="32.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />-->
+                      <!--<Text layoutX="267.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand" />-->
+                      <!--<Button layoutX="538.0" layoutY="210.0" mnemonicParsing="false" onAction="#addPetch" text="ADD" />-->
+                  <!--</children>-->
+              <!--</Pane>-->
+          <!--</content>-->
+      <!--</Tab>-->
   </tabs>
 </TabPane>

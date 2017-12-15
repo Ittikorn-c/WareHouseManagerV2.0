@@ -5,6 +5,7 @@ import Sale.models.Goods;
 import Sale.models.Requisition;
 import Sale.models.RequisitionGoods;
 
+import common.ComboBoxAutoComplete;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,6 +68,16 @@ public class RequisitionPageController {
 
     @FXML
     public void initialize() {
+
+        typeComboBox.getItems().addAll("A", "ab", "bb", "ca", "dd","aaa");
+        String[] s = {"D","E"};
+        for (String ss : s){
+            typeComboBox.getItems().add(ss);
+        }
+
+
+        new ComboBoxAutoComplete<String>(typeComboBox);
+
         this.columnGoodsID.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("id"));
         this.columnGoodsType.setCellValueFactory(new PropertyValueFactory<Goods, String>("type"));
         this.columnGoodsBrand.setCellValueFactory(new PropertyValueFactory<Goods, String>("brand"));
