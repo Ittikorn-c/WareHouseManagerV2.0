@@ -166,7 +166,7 @@ public class RequisitionPageController {
     }
 
     public String calRequisitionStatus(ArrayList<RequisitionGoods> requisitionGoodsList){
-        String status = "no item";
+        String status = "no";
         int numReGoods = requisitionGoodsList.size();
         int temp = 0;
         for(RequisitionGoods rg : requisitionGoodsList){
@@ -178,7 +178,7 @@ public class RequisitionPageController {
         }
 
         if(numReGoods == temp){
-            status = "have item";
+            status = "available";
         }
 
         return status;

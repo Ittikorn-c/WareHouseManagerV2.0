@@ -148,7 +148,7 @@ public class DBConnector {
         try {
             connect();
             if (conn != null) {
-                String query = String.format("UPDATE requisitions SET status = %s WHERE req_id = %d", status, id);
+                String query = String.format("UPDATE `requisitions` SET `status` = '%s' WHERE req_id = %d",status, id);
                 Statement statement = conn.createStatement();
                 statement.executeUpdate(query);
                 conn.close();

@@ -17,22 +17,22 @@ import java.util.List;
 public class ReqConfirmation {
 
     @FXML
-    private TableView orderIDTable;
+    private TableView reqIDTable;
     @FXML
-    private TableColumn<Requisition, Integer> orderIDCol;
+    private TableColumn<Requisition, Integer> reqIDCol;
 
     @FXML
-    private TableView reqGoodsLstTableView;
+    private TableView itemsTable;
     @FXML
-    private TableColumn<RequisitionGoods, Integer> idCol, quanCol;
+    private TableColumn<RequisitionGoods, Integer> itemsIDCol, itemQuanCol;
     @FXML
-    private TableColumn<RequisitionGoods, String> typeCol, brandCol, nameCol;
+    private TableColumn<RequisitionGoods, String> itemTypeCol, itemBrandCol, itemNameCol;
 
-    private List<Requisition> requisitionList = new ArrayList<Requisition>();
-    private ObservableList<Requisition> observableListReq;
+    private List<Requisition> confirmReqList = new ArrayList<Requisition>();
+    private ObservableList<Requisition> confirmReqObservableList;
 
-    private List<RequisitionGoods> RequisitionGoodsList = new ArrayList<RequisitionGoods>();
-    private ObservableList<RequisitionGoods> observableListItems;
+    private List<RequisitionGoods> confirmItemsList = new ArrayList<RequisitionGoods>();
+    private ObservableList<RequisitionGoods> confirmItemsObservableList;
 
     private DataManager dataManager;
 
@@ -40,49 +40,52 @@ public class ReqConfirmation {
 
     @FXML
     private void initialize(){
-        this.orderIDCol.setCellValueFactory(new PropertyValueFactory<Requisition, Integer>("id"));
+        this.reqIDCol.setCellValueFactory(new PropertyValueFactory<Requisition, Integer>("id"));
 
-        observableListReq = FXCollections.observableArrayList(requisitionList);
-        orderIDTable.setItems(observableListReq);
+        confirmReqObservableList = FXCollections.observableArrayList(confirmReqList);
+        reqIDTable.setItems(confirmReqObservableList);
 
-        this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
-        this.typeCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
-        this.brandCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
-        this.nameCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("name"));
-        this.quanCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("amount"));
+        this.itemsIDCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
+        this.itemTypeCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
+        this.itemBrandCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
+        this.itemNameCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("name"));
+        this.itemQuanCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("amount"));
 
-        observableListItems = FXCollections.observableArrayList(RequisitionGoodsList);
-        reqGoodsLstTableView.setItems(observableListItems);
+        confirmItemsObservableList = FXCollections.observableArrayList(confirmItemsList);
+        itemsTable.setItems(confirmItemsObservableList);
     }
 
-    public void reTableRe(){
+    public void reTableConfirm(){
+        confirmReqList.clear();
         for (Requisition r : dataManager.getRequisitions()){
-            if (r.getStatus().equals("กำลังเบิก"))
-                requisitionList.add(r);
+            if (r.getStatus().equals("picking"))
+                confirmReqList.add(r);
         }
-        observableListReq = FXCollections.observableArrayList(requisitionList);
-        orderIDTable.setItems(observableListReq);
+        confirmReqObservableList = FXCollections.observableArrayList(confirmReqList);
+        reqIDTable.setItems(confirmReqObservableList);
     }
 
     @FXML
     public void confirmHandle() {
         if (selectingReq != null) {
-            selectingReq.setStatus("เบิกแล้ว");
-            dataManager.setRequisitionStatus(selectingReq.getId(), "เบิกแล้ว");
-            reTableRe();
+            selectingReq.setStatus("done");
+            dataManager.setRequisitionStatus(selectingReq.getId(), "done");
+            reTableConfirm();
         }
     }
 
     @FXML
-    public void showAction(ActionEvent actionEvent) {
-        selectingReq = (Requisition) reqGoodsLstTableView.getSelectionModel().getSelectedItem();
+    public void showConfirm(ActionEvent actionEvent) {
+        confirmItemsList.clear();
+        selectingReq = (Requisition) reqIDTable.getSelectionModel().getSelectedItem();
+        System.out.println(selectingReq);
         for (RequisitionGoods rg: selectingReq.getRequisitionGoodsArrayList()) {
             RequisitionGoods RequisitionGoods = new RequisitionGoods(rg.getId(),rg.getType(),rg.getBrand(),rg.getName(),rg.getAmount());
-            RequisitionGoodsList.add(RequisitionGoods);
+            confirmItemsList.add(RequisitionGoods);
         }
 
-        observableListItems = FXCollections.observableArrayList(RequisitionGoodsList);
-        reqGoodsLstTableView.setItems(observableListItems);
+        confirmItemsObservableList = FXCollections.observableArrayList(confirmItemsList);
+        itemsTable.setItems(confirmItemsObservableList);
     }
 
     public void setDataManager(DataManager dataManager) {

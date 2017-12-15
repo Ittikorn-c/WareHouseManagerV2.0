@@ -69,7 +69,9 @@ public class ShowOrderPageController {
 
     public void reTableRe(){
         for (Requisition r : dataManager.getRequisitions()){
-            requisitionList.add(r);
+            if(r.getStatus().equals("available")) {
+                requisitionList.add(r);
+            }
         }
         observableListReq = FXCollections.observableArrayList(requisitionList);
         orderIDTable.setItems(observableListReq);
@@ -96,6 +98,7 @@ public class ShowOrderPageController {
         try {
             stage.setScene(new Scene((Parent) loader.load()));
             SampleView controller = loader.getController();
+            controller.setDataManager(this.dataManager);
             /*
             print by selected
              */
@@ -104,6 +107,7 @@ public class ShowOrderPageController {
                 this.requisitionListBySelected.add((Requisition)orderIDTable.getSelectionModel().getSelectedItem());
                 System.out.println(this.requisitionListBySelected);
                 controller.setRequisitionList(requisitionListBySelected);
+
                 controller.reTableReq();
 
             }
@@ -121,7 +125,7 @@ public class ShowOrderPageController {
         try {
             stage.setScene(new Scene((Parent) loader.load()));
             SampleView controller = loader.getController();
-
+            controller.setDataManager(this.dataManager);
             controller.setRequisitionList(requisitionList);
             System.out.println(requisitionList);
             controller.reTableReq();

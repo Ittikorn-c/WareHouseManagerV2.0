@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Pane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ReqConfirmation">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ReqConfirmation">
    <tabs>
       <Tab text="Confirmation">
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="orderIDTable" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
+                  <TableView fx:id="reqIDTable" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
                      <columns>
-                        <TableColumn fx:id="orderIDColumn" prefWidth="130.0" text="Order ID" />
+                        <TableColumn fx:id="reqIDCol" prefWidth="130.0" text="Order ID" />
                      </columns>
                   </TableView>
                   <TitledPane animated="false" collapsible="false" layoutX="215.0" layoutY="39.0" prefHeight="294.0" prefWidth="499.0" scaleShape="false" text="Items List">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="reqGoodsLstTableView" layoutY="1.0" prefHeight="228.0" prefWidth="498.0">
+                              <TableView fx:id="itemsTable" layoutY="1.0" prefHeight="228.0" prefWidth="498.0">
                                  <columns>
-                                    <TableColumn fx:id="idCol" prefWidth="61.0" text="ID" />
-                                    <TableColumn fx:id="typeCol" prefWidth="104.0" text="Type" />
-                                    <TableColumn fx:id="brandCol" prefWidth="103.0" text="Brand" />
-                                    <TableColumn fx:id="nameCol" prefWidth="154.0" text="Name" />
-                                    <TableColumn fx:id="quanCol" prefWidth="66.0" text="Quantity" />
+                                    <TableColumn fx:id="itemsIDCol" prefWidth="61.0" text="ID" />
+                                    <TableColumn fx:id="itemTypeCol" prefWidth="104.0" text="Type" />
+                                    <TableColumn fx:id="itemBrandCol" prefWidth="103.0" text="Brand" />
+                                    <TableColumn fx:id="itemNameCol" prefWidth="154.0" text="Name" />
+                                    <TableColumn fx:id="itemQuanCol" prefWidth="66.0" text="Quantity" />
                                  </columns>
                               </TableView>
                               <Button layoutX="424.0" layoutY="229.0" mnemonicParsing="false" onAction="#confirmHandle" text="Confirm" />
@@ -36,7 +37,7 @@
                         </Pane>
                      </content>
                   </TitledPane>
-                  <Button layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#showAction" prefHeight="25.0" prefWidth="54.0" text="Show" />
+                  <Button layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#showConfirm" prefHeight="25.0" prefWidth="54.0" text="Show" />
                </children>
             </Pane>
          </content>
