@@ -18,6 +18,7 @@ public class SampleView {
     private List<Requisition> requisitionList = new ArrayList<Requisition>();
     private List<RequisitionGoods> RequisitionGoodsList = new ArrayList<RequisitionGoods>();
     private ObservableList<RequisitionGoods> observableList;
+    private  List<RequisitionGoods> requisitionGoodsList = new ArrayList<RequisitionGoods>();
     @FXML
     private TableView reqGoodsLstTableView;
     @FXML
@@ -30,19 +31,7 @@ public class SampleView {
     }
     @FXML
     public void initialize(){
-        for (Requisition r : requisitionList) {
-            for (RequisitionGoods req: r.getRequisitionGoodsArrayList()) {
-                for (RequisitionGoods reqTing :RequisitionGoodsList) {
-                    if(req.getId() == reqTing.getId()){
-                        reqTing.setAmount(req.getAmount()+ reqTing.getAmount());
-                        break;
-                    }
-                    RequisitionGoodsList.add(new RequisitionGoods(req.getId(), req.getType(), req.getBrand(),req.getName(),req.getAmount()));
 
-                }
-
-            }
-        }
         this.idCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, Integer>("id"));
         this.typeCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("type"));
         this.brandCol.setCellValueFactory(new PropertyValueFactory<RequisitionGoods, String>("brand"));
@@ -52,6 +41,36 @@ public class SampleView {
         observableList = FXCollections.observableList(RequisitionGoodsList);
         reqGoodsLstTableView.setItems(observableList);
 
+    }
+
+    public void reTableReq(){
+        ArrayList<Integer> num = new ArrayList<Integer>();
+
+        requisitionGoodsList.clear();
+        for (Requisition r : requisitionList) {
+            for (RequisitionGoods req : r.getRequisitionGoodsArrayList()) {
+                RequisitionGoods rg = new RequisitionGoods(req.getId(), req.getType(), req.getBrand(), req.getName(), req.getAmount());
+                RequisitionGoodsList.add(rg);
+            }
+        }
+        for (RequisitionGoods reqTing :RequisitionGoodsList) {
+
+            if (!num.contains(reqTing.getId())){
+                num.add(reqTing.getId());
+                requisitionGoodsList.add(reqTing);
+            }
+            else{
+                for(RequisitionGoods g : requisitionGoodsList){
+                    if(g.getId() == reqTing.getId()){
+                        g.setAmount(g.getAmount()+reqTing.getAmount());
+                    }
+                }
+            }
+        }
+
+
+        observableList = FXCollections.observableList(requisitionGoodsList);
+        reqGoodsLstTableView.setItems(observableList);
     }
 
 

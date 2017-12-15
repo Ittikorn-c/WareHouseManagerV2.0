@@ -4,6 +4,7 @@ import Sale.dataSources.DBConnector;
 import Sale.models.Goods;
 import Sale.models.Requisition;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataManager {
@@ -13,6 +14,7 @@ public class DataManager {
 
     public DataManager(){
         getAllGoods();
+        this.requisitions = getRequisitions();
     }
 
     public void getAllGoods(){
@@ -33,7 +35,11 @@ public class DataManager {
     }
 
     public ArrayList<Requisition> getRequisitions() {
-        requisitions = dbConnector.getAllRequisitions();
+        try {
+            requisitions = dbConnector.getAllRequisitions();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return requisitions;
     }
 

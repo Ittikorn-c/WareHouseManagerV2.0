@@ -102,7 +102,7 @@ public class DBConnector {
         }
     }
 
-    public ArrayList<Requisition> getAllRequisitions(){
+    public ArrayList<Requisition> getAllRequisitions() throws SQLException {
         ArrayList<Requisition> requisitionArrayList = new ArrayList<Requisition>();
 
         try {
@@ -115,6 +115,7 @@ public class DBConnector {
                 String status = resultR.getString(2);
                 query = String.format("SELECT good_id, type, brand, name, amount " +
                         "FROM requisitiongoods, goodses WHERE req_id=%d AND requisitiongoods.good_id = goodses.id",id);
+                statement = conn.createStatement();
                 ResultSet resultO = statement.executeQuery(query);
 
                 ArrayList<RequisitionGoods> goods = new ArrayList<RequisitionGoods>();
@@ -138,7 +139,7 @@ public class DBConnector {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        conn.close();
         return requisitionArrayList;
 
     }

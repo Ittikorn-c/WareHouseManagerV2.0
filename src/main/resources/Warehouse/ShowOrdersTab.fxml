@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="666.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowOrderPageController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="666.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowOrderPageController">
   <tabs>
     <Tab text="Orders">
       <content>
@@ -23,7 +25,7 @@
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="pickBySlcBtn" layoutX="314.0" layoutY="233.0" mnemonicParsing="false" onAction="#printAllAction" text="Print by selected" />
+                              <Button fx:id="pickBySlcBtn" layoutX="314.0" layoutY="233.0" mnemonicParsing="false" onAction="#printBySlcAction" text="Print by selected" />
                               <TableView fx:id="reqGoodsLstTableView" layoutX="-1.0" prefHeight="229.0" prefWidth="440.0">
                                  <columns>
                                     <TableColumn fx:id="idCol" minWidth="2.0" prefWidth="55.0" text="ID" />

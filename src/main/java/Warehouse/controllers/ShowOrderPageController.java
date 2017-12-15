@@ -66,12 +66,19 @@ public class ShowOrderPageController {
 
 
     }
-    public void loadReq(){
-        this.requisitionList = dataManager.getRequisitions();
+
+    public void reTableRe(){
+        for (Requisition r : dataManager.getRequisitions()){
+            requisitionList.add(r);
+        }
+        observableListReq = FXCollections.observableArrayList(requisitionList);
+        orderIDTable.setItems(observableListReq);
     }
 
     public void showAction(ActionEvent actionEvent) {
-        Requisition req = (Requisition) reqGoodsLstTableView.getSelectionModel().getSelectedItem();
+        RequisitionGoodsList.clear();
+        Requisition req = (Requisition) orderIDTable.getSelectionModel().getSelectedItem();
+        System.out.println(req);
         for (RequisitionGoods rg: req.getRequisitionGoodsArrayList()) {
             RequisitionGoods RequisitionGoods = new RequisitionGoods(rg.getId(),rg.getType(),rg.getBrand(),rg.getName(),rg.getAmount());
             RequisitionGoodsList.add(RequisitionGoods);
@@ -82,7 +89,7 @@ public class ShowOrderPageController {
 
     }
 
-    public void printAllAction(ActionEvent actionEvent) {
+    public void printBySlcAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/WareHouse/SampleViewPage.fxml"));
 
@@ -93,10 +100,31 @@ public class ShowOrderPageController {
             print by selected
              */
             if((Requisition)orderIDTable.getSelectionModel().getSelectedItem()!= null){
+                requisitionListBySelected.clear();
                 this.requisitionListBySelected.add((Requisition)orderIDTable.getSelectionModel().getSelectedItem());
+                System.out.println(this.requisitionListBySelected);
                 controller.setRequisitionList(requisitionListBySelected);
+                controller.reTableReq();
 
-            }else {controller.setRequisitionList(this.requisitionList);}
+            }
+            stage.setTitle("Overview");
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void printAllAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WareHouse/SampleViewPage.fxml"));
+
+        try {
+            stage.setScene(new Scene((Parent) loader.load()));
+            SampleView controller = loader.getController();
+
+            controller.setRequisitionList(requisitionList);
+            System.out.println(requisitionList);
+            controller.reTableReq();
 
             stage.setTitle("Overview");
             stage.showAndWait();

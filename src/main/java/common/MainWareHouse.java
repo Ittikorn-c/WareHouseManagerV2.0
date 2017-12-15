@@ -2,8 +2,8 @@ package common;
 
 
 import Sale.controllers.DataManager;
-import Sale.controllers.RequisitionPageController;
 import Warehouse.controllers.ShowOrderPageController;
+import Warehouse.controllers.ShowsOrderPageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +23,7 @@ public class MainWareHouse extends Application {
 
         ShowOrderPageController controller = root.getController();
         controller.setDataManager(dataManager);
-        controller.loadReq();
+        controller.reTableRe();
         System.out.println(controller);
         System.out.println("test##########################################################################");
 
