@@ -23,6 +23,7 @@ public class MainWareHouse extends Application {
 
         ShowOrderPageController controller = root.getController();
         controller.setDataManager(dataManager);
+        controller.loadReq();
         System.out.println(controller);
         System.out.println("test##########################################################################");
 

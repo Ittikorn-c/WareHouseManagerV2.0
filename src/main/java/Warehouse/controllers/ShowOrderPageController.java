@@ -36,13 +36,17 @@ public class ShowOrderPageController {
 
     @FXML
     private void initialize(){
+
+
         this.orderIDCol.setCellValueFactory(new PropertyValueFactory<Requisition, Integer>("id"));
 
         observableListOrder = FXCollections.observableArrayList(requisitionList);
         orderIDTable.setItems(observableListOrder);
 
     }
-
+    public void loadReq(){
+        this.requisitionList = dataManager.getRequisitions();
+    }
 
     public void printAllAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
@@ -51,6 +55,12 @@ public class ShowOrderPageController {
         try {
             stage.setScene(new Scene((Parent) loader.load()));
             SampleView controller = loader.getController();
+            /*
+            print by selected
+             */
+            if((Requisition)orderIDTable.getSelectionModel().getSelectedItem()!= null){
+                this.requisitionList.add((Requisition)orderIDTable.getSelectionModel().getSelectedItem());
+            }
             controller.setRequisitionList(this.requisitionList);
             stage.setTitle("Overview");
             stage.showAndWait();

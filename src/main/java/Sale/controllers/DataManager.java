@@ -33,6 +33,7 @@ public class DataManager {
     }
 
     public ArrayList<Requisition> getRequisitions() {
+        requisitions = dbConnector.getAllRequisitions();
         return requisitions;
     }
 
