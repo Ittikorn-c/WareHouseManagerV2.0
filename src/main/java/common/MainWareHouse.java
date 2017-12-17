@@ -16,8 +16,8 @@ public class MainWareHouse extends Application {
         DataManager dataManager = new DataManager();
         FXMLLoader root = new FXMLLoader(getClass().getResource("/Warehouse/ShowsOrderPage.fxml"));
 
-        primaryStage.setScene(new Scene((Parent) root.load(), 1000, 600));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene((Parent) root.load(), 1209, 792));
+        primaryStage.setTitle("Warehouse Management");
 
         ShowsOrderPageController controller = root.getController();
 
@@ -25,10 +25,12 @@ public class MainWareHouse extends Application {
         controller.reTableConfirm();
         controller.reTableRe();
         controller.reTableGoods();
+        controller.initComboBox();
         controller.reTableImp();
-        controller.reTablePetch();
+//        controller.reTablePetch();
+        controller.rePoIdTable();
         System.out.println(controller);
-        System.out.println("test##########################################################################");
+        System.out.println("filterNameType##########################################################################");
 
         primaryStage.show();
     }

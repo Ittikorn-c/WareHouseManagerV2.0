@@ -4,7 +4,6 @@ import Sale.models.Goods;
 import Sale.models.Requisition;
 import Sale.models.RequisitionGoods;
 
-import common.ComboBoxAutoComplete;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -71,11 +67,6 @@ public class RequisitionPageController {
     @FXML
     public void initialize() {
 
-        allTypes = dataManager.getAllTypes();
-        allBrands = dataManager.getAllBrands();
-        typeComboBox.getItems().addAll(allTypes);
-        brandComboBox.getItems().addAll(allBrands);
-
         this.columnGoodsID.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("id"));
         this.columnGoodsType.setCellValueFactory(new PropertyValueFactory<Goods, String>("type"));
         this.columnGoodsBrand.setCellValueFactory(new PropertyValueFactory<Goods, String>("brand"));
@@ -92,6 +83,30 @@ public class RequisitionPageController {
 
         requisitionGoodsObservableList = FXCollections.observableList(requisitionGoodsList);
         tableViewReq.setItems(requisitionGoodsObservableList);
+    }
+
+    public void initComboBox() {
+        allTypes = dataManager.getAllTypes();
+        allBrands = dataManager.getAllBrands();
+        typeComboBox.getItems().addAll(allTypes);
+        brandComboBox.getItems().addAll(allBrands);
+
+        typeComboBox.setValue("");
+        brandComboBox.setValue("");
+
+//        typeComboBox.setOnKeyTyped(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//                filterTypeKeyType();
+//            }
+//        });
+//
+//        brandComboBox.setOnKeyTyped(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//                filterBrandKeyType();
+//            }
+//        });
     }
 
     public void reTableGoodses(){
@@ -131,16 +146,31 @@ public class RequisitionPageController {
 
             stage.showAndWait();
 
-            for(Goods g : dataManager.getGoodses()){
-                System.out.println(String.format("id: %d Quantity %d",g.getId(), g.getQuantity()));
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        requisitionGoodsList.add(requisitionGoods);
-        requisitionGoodsObservableList = FXCollections.observableList(requisitionGoodsList);
-        tableViewReq.setItems(requisitionGoodsObservableList);
+
+        if(requisitionGoods.getAmount()!=0){
+            int i=0;
+
+            for (RequisitionGoods g : requisitionGoodsList) {
+                if (g.getId() == requisitionGoods.getId()){
+                    g.setAmount(g.getAmount()+requisitionGoods.getAmount());
+                    i++;
+                    tableViewReq.refresh();
+                    break;
+                }
+
+
+            }
+            if(i==0){
+                requisitionGoodsList.add(requisitionGoods);
+                requisitionGoodsObservableList = FXCollections.observableList(requisitionGoodsList);
+                tableViewReq.setItems(requisitionGoodsObservableList);
+            }
+        }
+
     }
 
     public void removeGoods(ActionEvent actionEvent) {
@@ -161,17 +191,27 @@ public class RequisitionPageController {
             controller.setDataManager(dataManager);
 
             stage.showAndWait();
+
+            reTableGoodses();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void saveRequisition(ActionEvent actionEvent) {
-        ArrayList<RequisitionGoods> requisitionGoodsList = (ArrayList<RequisitionGoods>) this.requisitionGoodsList;
-        String status = calRequisitionStatus(requisitionGoodsList);
+        if(!requisitionGoodsList.isEmpty()) {
+            ArrayList<RequisitionGoods> requisitionGoodsList = (ArrayList<RequisitionGoods>) this.requisitionGoodsList;
+            String status = calRequisitionStatus(requisitionGoodsList);
+            System.out.println(status);
+            Requisition requisition = new Requisition(0, status, requisitionGoodsList);
+            dataManager.insertRequisition(requisition);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "saved");
+            alert.showAndWait();
+            requisitionGoodsList.clear();
 
-        Requisition requisition = new Requisition(0,status, requisitionGoodsList);
-        dataManager.insertRequisition(requisition);
+            requisitionGoodsObservableList = FXCollections.observableList(requisitionGoodsList);
+            tableViewReq.setItems(requisitionGoodsObservableList);
+        }
     }
 
     public String calRequisitionStatus(ArrayList<RequisitionGoods> requisitionGoodsList){
@@ -180,14 +220,15 @@ public class RequisitionPageController {
         int temp = 0;
         for(RequisitionGoods rg : requisitionGoodsList){
             for(Goods g : dataManager.getGoodses()){
-                if (rg.getAmount() <= g.getQuantity()){
+                if (rg.getId() == g.getId() && rg.getAmount() <= g.getQuantity()){
                     temp++;
                 }
             }
         }
-
+        System.out.println(numReGoods);
+        System.out.println(temp);
         if(numReGoods == temp){
-            status = "available";
+            status = "available";         // ของมีแต่ status no
         }
 
         return status;
@@ -201,49 +242,77 @@ public class RequisitionPageController {
         this.dataManager = dataManager;
     }
 
+//    public void filterTypeKeyType() {
+//        System.out.println("key type type");
+//        ArrayList<String> filtered = new ArrayList<>();
+//
+//        for (String type : allTypes) {
+//            if (type.contains(typeComboBox.getValue())) {
+//                filtered.add(type);
+//            }
+//        }
+//
+//        typeComboBox.getItems().setAll(filtered);
+//    }
+//
+//    public void filterBrandKeyType() {
+//        System.out.println("key brand type");
+//        ArrayList<String> filtered = new ArrayList<>();
+//
+//        for (String brand : allBrands) {
+//            if (brand.contains(brandComboBox.getValue())) {
+//                filtered.add(brand);
+//            }
+//        }
+//
+//        brandComboBox.getItems().setAll(filtered);
+//    }
+
+    List<Goods> goodsByType = new ArrayList<>();
     @FXML
-    public void filterTypeKeyType() {
-        ArrayList<String> filtered = new ArrayList<>();
-
-        for (String type : allTypes) {
-            if (type.contains(typeComboBox.getValue())) {
-                filtered.add(type);
-            }
-        }
-
-        typeComboBox.getItems().setAll(filtered);
-    }
-
-    @FXML
-    public void filterBrandKeyType() {
-        ArrayList<String> filtered = new ArrayList<>();
-
-        for (String brand : allBrands) {
-            if (brand.contains(brandComboBox.getValue())) {
-                filtered.add(brand);
-            }
-        }
-
-        brandComboBox.getItems().setAll(filtered);
-    }
-
-    @FXML
-    public void filterBrands() {
-        System.out.println("filter brands");
-        if (!"".equals(brandComboBox.getValue()))
-            return;
+    public void filterTypeSelect() {
+        goodsByType.clear();
+        nameTextField.clear();
 
         brandComboBox.getItems().clear();
         brandComboBox.getItems().addAll(dataManager.getAllBrands(typeComboBox.getValue()));
+        brandComboBox.setDisable(false);
+
+        for (Goods g : goodsList) {
+            if (typeComboBox.getValue().equals(g.getType()))
+                goodsByType.add(g);
+        }
+
+        goodsObservableList = FXCollections.observableList(goodsByType);
+        tableViewGoods.setItems(goodsObservableList);
     }
 
+    List<Goods> goodsByBrand = new ArrayList<>();
     @FXML
-    public void filterTypes() {
-        System.out.println("filter types");
-        if (!"".equals(typeComboBox.getValue()))
-            return;
+    public void filterBrandSelect() {
+        goodsByBrand.clear();
+        nameTextField.clear();
 
-        typeComboBox.getItems().clear();
-        typeComboBox.getItems().addAll(dataManager.getAllTypes(brandComboBox.getValue()));
+        for (Goods g : goodsByType) {
+            if (brandComboBox.getValue().equals(g.getBrand()))
+                goodsByBrand.add(g);
+        }
+
+        goodsObservableList = FXCollections.observableList(goodsByBrand);
+        tableViewGoods.setItems(goodsObservableList);
+    }
+
+    List<Goods> goodsByName = new ArrayList<>();
+    @FXML
+    public void filterNameType() {
+        goodsByName.clear();
+
+        for (Goods g : goodsByBrand) {
+            if (g.getName().contains(nameTextField.getText()))
+                goodsByName.add(g);
+        }
+
+        goodsObservableList = FXCollections.observableList(goodsByName);
+        tableViewGoods.setItems(goodsObservableList);
     }
 }

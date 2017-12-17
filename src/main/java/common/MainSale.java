@@ -16,17 +16,18 @@ public class MainSale extends Application {
         DataManager dataManager = new DataManager();
         FXMLLoader root = new FXMLLoader(getClass().getResource("/Sale/RequisitionPage.fxml"));
 
-        primaryStage.setScene(new Scene((Parent) root.load(), 1000, 600));
-        primaryStage.setTitle("Hello World");
-        primaryStage.show();
+        primaryStage.setScene(new Scene((Parent) root.load(), 1092, 600));
+        primaryStage.setTitle("Warehouse Management for Sale");
 
         RequisitionPageController controller = root.getController();
         controller.setDataManager(dataManager);
         controller.reTableGoodses();
-        System.out.println(controller);
-        System.out.println("test##########################################################################");
+        controller.initComboBox();
 
-        controller.setDataManager(dataManager);
+        System.out.println(controller);
+        System.out.println("filterNameType##########################################################################");
+
+        primaryStage.show();
     }
 
 

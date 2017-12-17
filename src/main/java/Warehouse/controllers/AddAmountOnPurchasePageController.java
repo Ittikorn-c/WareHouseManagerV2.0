@@ -2,6 +2,7 @@ package Warehouse.controllers;
 
 import Sale.models.Goods;
 import Sale.models.RequisitionGoods;
+import Warehouse.models.PurchaseOrderGoods;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,14 +27,21 @@ public class AddAmountOnPurchasePageController {
     private Goods goods;
     @FXML
     public void addOrder(){
-        if ("".equals(this.amountTextField.getText()))
+        if ("".equals(this.amountTextField.getText()) || this.amountTextField.getText().length()>4 || this.amountTextField.getText().substring(0,1).equals("-") || this.amountTextField.getText().equals("0"))
             return;
+        try {
+            int i = Integer.parseInt(this.amountTextField.getText());
+            if (this.goods instanceof PurchaseOrderGoods)
+                ((PurchaseOrderGoods) this.goods).setAmount(Integer.parseInt(this.amountTextField.getText()));
+            else
+                this.goods.setQuantity(this.goods.getQuantity() + Integer.parseInt(this.amountTextField.getText()));
+            addBtn.getScene().getWindow().hide();
+        }
+        catch(NumberFormatException nfe)
+        {
+            return;
+        }
 
-        if (this.goods instanceof RequisitionGoods)
-            ((RequisitionGoods) this.goods).setAmount(Integer.parseInt(this.amountTextField.getText()));
-        else
-            this.goods.setQuantity(this.goods.getQuantity() + Integer.parseInt(this.amountTextField.getText()));
-        addBtn.getScene().getWindow().hide();
     }
 
     public Goods getGoods() {

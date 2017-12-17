@@ -6,12 +6,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sale.controllers.RequisitionPageController">
+<GridPane alignment="center" hgap="10" prefHeight="671.0" prefWidth="1092.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sale.controllers.RequisitionPageController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -19,17 +21,20 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="671.0" prefWidth="1000.0">
+      <Pane prefHeight="671.0" prefWidth="1112.0">
          <children>
-            <TableView fx:id="tableViewGoods" layoutX="19.0" layoutY="200.0" prefHeight="301.0" prefWidth="451.0">
+            <TableView fx:id="tableViewGoods" layoutX="34.0" layoutY="194.0" prefHeight="301.0" prefWidth="503.0">
               <columns>
                 <TableColumn fx:id="columnGoodsID" prefWidth="83.00003051757812" text="ID" />
                 <TableColumn fx:id="columnGoodsType" prefWidth="90.0" text="Type" />
                   <TableColumn fx:id="columnGoodsBrand" prefWidth="118.0" text="Brand" />
-                  <TableColumn fx:id="columnGoodsName" prefWidth="158.0" text="Name" />
+                  <TableColumn fx:id="columnGoodsName" prefWidth="203.0" text="Name" />
               </columns>
+               <effect>
+                  <DropShadow radius="22.6025" width="71.41" />
+               </effect>
             </TableView>
-            <TableView fx:id="tableViewReq" layoutX="528.0" layoutY="200.0" prefHeight="301.0" prefWidth="451.0">
+            <TableView fx:id="tableViewReq" layoutX="604.0" layoutY="194.0" prefHeight="301.0" prefWidth="451.0">
               <columns>
                 <TableColumn fx:id="columnReqID" prefWidth="96.0" text="ID" />
                 <TableColumn fx:id="columnReqType" prefWidth="82.0" text="Type" />
@@ -37,19 +42,46 @@
                   <TableColumn fx:id="columnReqName" prefWidth="102.0" text="Name" />
                   <TableColumn fx:id="columnReqAmount" prefWidth="94.0" text="Amount" />
               </columns>
+               <effect>
+                  <DropShadow height="43.24" radius="17.0425" width="26.93" />
+               </effect>
             </TableView>
-            <Button layoutX="450.0" layoutY="549.0" mnemonicParsing="false" onAction="#saveRequisition" text="Save" />
-            <Button layoutX="502.0" layoutY="549.0" mnemonicParsing="false" onAction="#clearAll" text="Clear" />
-            <Button layoutX="481.0" layoutY="235.0" mnemonicParsing="false" onAction="#addGoods" text="Add" />
-            <Button layoutX="922.0" layoutY="516.0" mnemonicParsing="false" onAction="#removeGoods" text="Remove" />
-            <ComboBox fx:id="typeComboBox" editable="true" layoutX="73.0" layoutY="104.0" onAction="#filterBrands" onKeyTyped="#filterTypeKeyType" prefWidth="150.0" />
-            <ComboBox fx:id="brandComboBox" editable="true" layoutX="287.0" layoutY="104.0" onAction="#filterTypes" onKeyTyped="#filterBrandKeyType" prefWidth="150.0" />
-            <TextField fx:id="nameTextField" layoutX="74.0" layoutY="150.0" />
+            <Button layoutX="464.0" layoutY="549.0" mnemonicParsing="false" onAction="#saveRequisition" prefHeight="46.0" prefWidth="91.0" text="Save">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button layoutX="586.0" layoutY="549.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="46.0" prefWidth="91.0" text="Clear">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button layoutX="548.0" layoutY="237.0" mnemonicParsing="false" onAction="#addGoods" text="Add">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button layoutX="996.0" layoutY="510.0" mnemonicParsing="false" onAction="#removeGoods" text="Remove">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <ComboBox fx:id="typeComboBox" layoutX="73.0" layoutY="104.0" onAction="#filterTypeSelect" prefWidth="150.0">
+               <effect>
+                  <DropShadow />
+               </effect></ComboBox>
+            <ComboBox fx:id="brandComboBox" disable="true" layoutX="287.0" layoutY="104.0" onAction="#filterBrandSelect" prefWidth="150.0">
+               <effect>
+                  <DropShadow />
+               </effect></ComboBox>
+            <TextField fx:id="nameTextField" layoutX="74.0" layoutY="150.0" onAction="#filterNameType" />
             <Label layoutX="34.0" layoutY="108.0" text="Type" />
             <Label layoutX="244.0" layoutY="108.0" text="Brand" />
             <Label layoutX="32.0" layoutY="154.0" text="name" />
-            <Button layoutX="844.0" layoutY="99.0" mnemonicParsing="false" onAction="#addNewGoods" prefHeight="36.0" prefWidth="103.0" text="New Goods" />
-            <Label layoutX="505.0" layoutY="45.0" prefHeight="17.0" prefWidth="30.0" text="ใบเบิก" />
+            <Button layoutX="945.0" layoutY="107.0" mnemonicParsing="false" onAction="#addNewGoods" prefHeight="36.0" prefWidth="103.0" text="New Goods">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Label alignment="CENTER" layoutX="426.0" layoutY="42.0" prefHeight="17.0" prefWidth="282.0" text="Create Requisition">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>

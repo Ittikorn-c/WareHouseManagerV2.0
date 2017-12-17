@@ -19,8 +19,17 @@ public class AddAmountController {
     private RequisitionGoods requisitionGoods;
 
     public void addGoods(ActionEvent actionEvent) {
-        requisitionGoods.setAmount(Integer.parseInt(amountTextField.getText()));
-        addBtn.getScene().getWindow().hide();
+        if ("".equals(this.amountTextField.getText()) || this.amountTextField.getText().length()>4 || this.amountTextField.getText().substring(0,1).equals("-") || this.amountTextField.getText().equals("0"))
+            return;
+        try {
+            int i = Integer.parseInt(this.amountTextField.getText());
+            requisitionGoods.setAmount(Integer.parseInt(amountTextField.getText()));
+            addBtn.getScene().getWindow().hide();
+        }
+        catch(NumberFormatException nfe)
+        {
+            return;
+        }
     }
 
     public Label getIdLabel() {

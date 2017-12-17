@@ -9,174 +9,395 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1209.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowsOrderPageController">
   <tabs>
-      <Tab text="Orders">
+      <Tab text="Check Requisition">
           <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="604.0">
                   <children>
-                      <TableView fx:id="orderIDTable" layoutX="19.0" layoutY="32.0" prefHeight="290.0" prefWidth="133.0">
-                          <columns>
-                              <!---->
-                              <TableColumn fx:id="orderIDCol" prefWidth="130.0" text="Order ID" />
-                          </columns>
-                      </TableView>
-                      <TitledPane animated="false" collapsible="false" layoutX="221.0" layoutY="33.0" prefHeight="294.0" prefWidth="440.0" scaleShape="false" text="Items List">
+                      <TitledPane animated="false" collapsible="false" layoutX="475.0" layoutY="145.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
                           <content>
                               <Pane prefHeight="200.0" prefWidth="200.0">
                                   <children>
-                                      <Button fx:id="pickBySlcBtn" layoutX="314.0" layoutY="233.0" mnemonicParsing="false" onAction="#printBySlcAction" text="Print by selected" />
-                                      <TableView fx:id="reqGoodsLstTableView" layoutX="-1.0" prefHeight="229.0" prefWidth="440.0">
+                                      <TableView fx:id="reqGoodsLstTableView" layoutX="-1.0" prefHeight="334.0" prefWidth="683.0">
                                           <columns>
                                               <TableColumn fx:id="idCol" minWidth="2.0" prefWidth="55.0" text="ID" />
-                                              <TableColumn fx:id="typeCol" prefWidth="100.0" text="Type" />
-                                              <TableColumn fx:id="brandCol" prefWidth="102.0" text="Brand" />
-                                              <TableColumn fx:id="nameCol" prefWidth="97.0" text="Name" />
+                                              <TableColumn fx:id="typeCol" prefWidth="151.0" text="Type" />
+                                              <TableColumn fx:id="brandCol" prefWidth="150.0" text="Brand" />
+                                              <TableColumn fx:id="nameCol" prefWidth="230.0" text="Name" />
                                               <TableColumn fx:id="quanCol" prefWidth="96.0" text="Quantity" />
-                                              <TableColumn fx:id="quanItemCol" prefWidth="101.0" text="Quantity" />
+                                              <TableColumn fx:id="quanItemCol" minWidth="0.0" prefWidth="0.0" text="Quantity" />
                                           </columns>
                                       </TableView>
+                                      <Button fx:id="pickBySlcBtn" layoutX="237.0" layoutY="339.0" mnemonicParsing="false" onAction="#printBySlcAction" prefHeight="44.0" prefWidth="205.0" text="Print by selected">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
                                   </children>
                               </Pane>
                           </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                       </TitledPane>
-                      <Button fx:id="pickAllBtn" layoutX="568.0" layoutY="332.0" mnemonicParsing="false" onAction="#printAllAction" text="Print All" />
-                      <Button fx:id="showBtn" layoutX="163.0" layoutY="155.0" mnemonicParsing="false" onAction="#showAction" text="Show" />
-                  </children></AnchorPane>
+                      <Button fx:id="pickAllBtn" layoutX="1022.0" layoutY="647.0" mnemonicParsing="false" onAction="#printAllAction" prefHeight="41.0" prefWidth="113.0" text="Print All">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+                      <Button fx:id="showBtn" layoutX="353.0" layoutY="346.0" mnemonicParsing="false" onAction="#showAction" prefHeight="50.0" prefWidth="100.0" text="Show">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="145.0" prefHeight="445.0" prefWidth="278.0" text="Requisition">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="359.0" prefWidth="268.0">
+                           <children>
+                                  <TableView fx:id="orderIDTable" layoutY="-3.0" prefHeight="400.0" prefWidth="282.0">
+                                      <columns>
+                                          <!---->
+                                          <TableColumn fx:id="orderIDCol" prefWidth="281.0" text="Order ID" />
+                                      </columns>
+                                  </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TitledPane>
+                  <Label layoutX="501.0" layoutY="44.0" prefHeight="45.0" prefWidth="207.0" text="Check Requisition">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="1027.0" layoutY="52.0" mnemonicParsing="false" onAction="#refreshCheckReq" prefHeight="40.0" prefWidth="86.0" text="Refresh" />
+                  </children>
+               <effect>
+                  <InnerShadow color="#070000" />
+               </effect></AnchorPane>
           </content>
       </Tab>
-      <Tab text="Confirmation">
+      <Tab text="Confirm Requisition">
           <content>
               <Pane prefHeight="200.0" prefWidth="200.0">
                   <children>
-                      <TableView fx:id="reqIDTable" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
-                          <columns>
-                              <TableColumn fx:id="reqIDCol" prefWidth="130.0" text="Order ID" />
-                          </columns>
-                      </TableView>
-                      <TitledPane animated="false" collapsible="false" layoutX="215.0" layoutY="39.0" prefHeight="294.0" prefWidth="499.0" scaleShape="false" text="Items List">
+                      <TitledPane animated="false" collapsible="false" layoutX="481.0" layoutY="161.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
                           <content>
                               <Pane prefHeight="200.0" prefWidth="200.0">
                                   <children>
-                                      <TableView fx:id="itemsTable" layoutY="1.0" prefHeight="228.0" prefWidth="498.0">
+                                      <TableView fx:id="itemsTable" layoutY="1.0" prefHeight="342.0" prefWidth="680.0">
                                           <columns>
                                               <TableColumn fx:id="itemsIDCol" prefWidth="61.0" text="ID" />
-                                              <TableColumn fx:id="itemTypeCol" prefWidth="104.0" text="Type" />
-                                              <TableColumn fx:id="itemBrandCol" prefWidth="103.0" text="Brand" />
-                                              <TableColumn fx:id="itemNameCol" prefWidth="154.0" text="Name" />
-                                              <TableColumn fx:id="itemQuanCol" prefWidth="66.0" text="Quantity" />
+                                              <TableColumn fx:id="itemTypeCol" prefWidth="137.0" text="Type" />
+                                              <TableColumn fx:id="itemBrandCol" prefWidth="136.0" text="Brand" />
+                                              <TableColumn fx:id="itemNameCol" prefWidth="252.0" text="Name" />
+                                              <TableColumn fx:id="itemQuanCol" prefWidth="93.0" text="Quantity" />
                                           </columns>
                                       </TableView>
-                                      <Button layoutX="424.0" layoutY="229.0" mnemonicParsing="false" onAction="#confirmHandle" text="Confirm" />
+                                      <Button fx:id="confirmBtn" layoutX="291.0" layoutY="349.0" mnemonicParsing="false" onAction="#confirmHandle" text="Confirm">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
                                   </children>
                               </Pane>
                           </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                       </TitledPane>
-                      <Button layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#showConfirm" prefHeight="25.0" prefWidth="54.0" text="Show" />
+                      <Button layoutX="353.0" layoutY="357.0" mnemonicParsing="false" onAction="#showConfirm" prefHeight="50.0" prefWidth="100.0" text="Show">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="161.0" prefHeight="444.0" prefWidth="270.0" text="Requisition">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                                  <TableView fx:id="reqIDTable" prefHeight="396.0" prefWidth="268.0">
+                                      <columns>
+                                          <TableColumn fx:id="reqIDCol" prefWidth="267.0" text="Order ID" />
+                                      </columns>
+                                  </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TitledPane>
+                  <Label layoutX="490.0" layoutY="67.0" prefHeight="43.0" prefWidth="230.0" text="Confirm Requisition">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                   </children>
+               <effect>
+                  <InnerShadow />
+               </effect>
               </Pane>
           </content>
       </Tab>
-      <Tab text="Purchase Order">
+      <Tab text="Create Purchase Order">
           <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="783.0" prefWidth="1209.0">
                   <children>
-                      <TitledPane animated="false" collapsible="false" layoutX="56.0" layoutY="369.0" text="Goods List">
+                      <TitledPane animated="false" collapsible="false" layoutX="40.0" layoutY="480.0" prefHeight="212.0" prefWidth="520.0" text="Goods List">
                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="518.0">
                                   <children>
-                                      <TableView fx:id="poTableViewGoods" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                      <TableView fx:id="poTableViewGoods" layoutX="-3.0" layoutY="-4.0" prefHeight="169.0" prefWidth="523.0">
                                           <columns>
-                                              <TableColumn fx:id="poColumnGoodsID" prefWidth="83.00003051757812" text="ID" />
-                                              <TableColumn fx:id="poColumnGoodsType" prefWidth="90.0" text="Type" />
-                                              <TableColumn fx:id="poColumnGoodsBrand" prefWidth="118.0" text="Brand" />
-                                              <TableColumn fx:id="poColumnGoodsName" prefWidth="158.0" text="Name" />
+                                              <TableColumn fx:id="poColumnGoodsID" prefWidth="44.0" text="ID" />
+                                              <TableColumn fx:id="poColumnGoodsType" prefWidth="102.0" text="Type" />
+                                              <TableColumn fx:id="poColumnGoodsBrand" prefWidth="114.0" text="Brand" />
+                                              <TableColumn fx:id="poColumnGoodsName" prefWidth="262.0" text="Name" />
                                           </columns>
                                       </TableView>
                                   </children>
                               </AnchorPane>
                           </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                       </TitledPane>
-                      <TitledPane animated="false" collapsible="false" layoutX="622.0" layoutY="369.0" text="Order List">
+                      <TitledPane animated="false" collapsible="false" layoutX="651.0" layoutY="55.0" prefHeight="637.0" prefWidth="516.0" text="Order List">
                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="604.0" prefWidth="514.0">
                                   <children>
-                                      <TableView fx:id="tableViewOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                      <TableView fx:id="tableViewOrder" layoutX="-2.0" layoutY="-1.0" prefHeight="557.0" prefWidth="515.0">
                                           <columns>
-                                              <TableColumn fx:id="columnOrderID" prefWidth="83.00003051757812" text="ID" />
-                                              <TableColumn fx:id="columnOrderType" prefWidth="90.0" text="Type" />
+                                              <TableColumn fx:id="columnOrderID" prefWidth="43.0" text="ID" />
+                                              <TableColumn fx:id="columnOrderType" prefWidth="108.0" text="Type" />
                                               <TableColumn fx:id="columnOrderBrand" prefWidth="98.0" text="Brand" />
-                                              <TableColumn fx:id="columnOrderName" prefWidth="90.0" text="Name" />
-                                              <TableColumn fx:id="columnOrderAmount" prefWidth="87.0" text="Amount" />
+                                              <TableColumn fx:id="columnOrderName" prefWidth="160.0" text="Name" />
+                                              <TableColumn fx:id="columnOrderAmount" prefWidth="105.0" text="Amount" />
                                           </columns>
                                       </TableView>
                                   </children>
                               </AnchorPane>
                           </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                       </TitledPane>
-                      <ComboBox fx:id="typeComboBox" layoutX="100.0" layoutY="187.0" prefWidth="150.0" />
-                      <ComboBox fx:id="brandComboBox" layoutX="368.0" layoutY="187.0" prefWidth="150.0" />
-                      <TextField fx:id="nameTextField" layoutX="100.0" layoutY="275.0" />
-                      <Button fx:id="addBtn" layoutX="531.0" layoutY="495.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="35.0" prefWidth="75.0" text="Add " />
-                      <Button layoutX="531.0" layoutY="574.0" mnemonicParsing="false" onAction="#deleteOrder" text="Remove" />
-                      <Button layoutX="1084.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveOrder" prefHeight="37.0" prefWidth="102.0" text="Save" />
-                      <Button layoutX="1083.0" layoutY="679.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="32.0" prefWidth="104.0" text="Cancle" />
-                      <TitledPane animated="false" collapsible="false" layoutX="622.0" layoutY="16.0" pickOnBounds="false" text="Not enough in warehouse for Requisition ">
+                      <ComboBox fx:id="typeComboBox" layoutX="104.0" layoutY="401.0" onAction="#filterTypeSelect" prefWidth="150.0">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                      <ComboBox fx:id="brandComboBox" layoutX="350.0" layoutY="401.0" onAction="#filterBrandSelect" prefWidth="150.0">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                      <TextField fx:id="nameTextField" layoutX="104.0" layoutY="437.0" onAction="#filterNameType">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                      <Button fx:id="addBtn" layoutX="580.0" layoutY="480.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="20.0" prefWidth="50.0" text="Add ">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                      <Button layoutX="575.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="20.0" prefWidth="61.0" text="Remove">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                      <Button layoutX="398.0" layoutY="705.0" mnemonicParsing="false" onAction="#saveOrder" prefHeight="37.0" prefWidth="102.0" text="Save">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                      <Button layoutX="605.0" layoutY="705.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="32.0" prefWidth="104.0" text="Cancle">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                      <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="57.0" pickOnBounds="false" prefHeight="235.0" prefWidth="524.0" text="Not enough in warehouse for Requisition ">
                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="460.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="183.0" prefWidth="520.0">
                                   <children>
-                                      <TableView fx:id="tableViewImportantToOrder" layoutX="5.0" layoutY="5.0" prefHeight="301.0" prefWidth="451.0">
+                                      <TableView fx:id="tableViewImportantToOrder" layoutY="-2.0" prefHeight="191.0" prefWidth="524.0">
                                           <columns>
-                                              <TableColumn fx:id="columnImportantToOrderID" prefWidth="85.0" text="ID" />
-                                              <TableColumn fx:id="columnImportantToOrderType" prefWidth="81.0" text="Type" />
-                                              <TableColumn fx:id="columnImportantToOrderBrand" prefWidth="90.0" text="Brand" />
-                                              <TableColumn fx:id="columnImportantToOrderName" prefWidth="101.0" text="Name" />
-                                              <TableColumn fx:id="columnImportantToOrderAmount" prefWidth="87.0" text="Amount" />
+                                              <TableColumn fx:id="columnImportantToOrderID" prefWidth="40.0" text="ID" />
+                                              <TableColumn fx:id="columnImportantToOrderType" prefWidth="110.0" text="Type" />
+                                              <TableColumn fx:id="columnImportantToOrderBrand" prefWidth="109.0" text="Brand" />
+                                              <TableColumn fx:id="columnImportantToOrderName" prefWidth="162.0" text="Name" />
+                                              <TableColumn fx:id="columnImportantToOrderAmount" prefWidth="102.0" text="Amount" />
                                           </columns>
                                       </TableView>
                                   </children>
                               </AnchorPane>
                           </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                       </TitledPane>
-                      <Label layoutX="39.0" layoutY="192.0" text="Type" />
-                      <Label layoutX="297.0" layoutY="192.0" text="Brand" />
-                      <Label layoutX="38.0" layoutY="280.0" text="Name" />
+                      <Label layoutX="33.0" layoutY="398.0" text="Type">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                      <Label layoutX="274.0" layoutY="398.0" text="Brand">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                      <Label layoutX="28.0" layoutY="434.0" text="Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label layoutX="447.0" layoutY="14.0" prefHeight="35.0" prefWidth="256.0" text="Create Purchase Order">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="36.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="supComboBox" layoutX="131.0" layoutY="341.0" prefWidth="150.0" />
+                  <Button layoutX="333.0" layoutY="341.0" mnemonicParsing="false" onAction="#newSupplierAction" text="New Suppliers" />
                   </children>
+               <effect>
+                  <InnerShadow />
+               </effect>
               </AnchorPane>
           </content>
       </Tab>
-      <Tab text="Add New Goods">
+      <Tab text="Add Recieved Goods to Store">
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="poTableView" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="133.0">
-                     <columns>
-                        <TableColumn fx:id="poIDCol" prefWidth="130.0" text="PO ID" />
-                     </columns>
-                  </TableView>
-                  <TitledPane animated="false" collapsible="false" layoutX="215.0" layoutY="39.0" prefHeight="294.0" prefWidth="499.0" scaleShape="false" text="Items List">
+                  <TitledPane animated="false" collapsible="false" layoutX="465.0" layoutY="260.0" prefHeight="442.0" prefWidth="657.0" scaleShape="false" text="Items List">
                      <content>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
+                        <Pane prefHeight="397.0" prefWidth="657.0">
                            <children>
-                              <TableView fx:id="poItemTableView" layoutY="1.0" prefHeight="228.0" prefWidth="498.0">
+                              <TableView fx:id="poItemTableView" prefHeight="343.0" prefWidth="656.0">
                                  <columns>
-                                    <TableColumn fx:id="poItemIdCol" prefWidth="61.0" text="ID" />
-                                    <TableColumn fx:id="poItemTypeCol" prefWidth="104.0" text="Type" />
-                                    <TableColumn fx:id="poItemBrandCol" prefWidth="103.0" text="Brand" />
-                                    <TableColumn fx:id="poItemNameCol" prefWidth="154.0" text="Name" />
-                                    <TableColumn fx:id="poItemQuanCol" prefWidth="66.0" text="Quantity" />
+                                    <TableColumn fx:id="poItemIdCol" prefWidth="63.0" text="ID" />
+                                    <TableColumn fx:id="poItemTypeCol" prefWidth="139.0" text="Type" />
+                                    <TableColumn fx:id="poItemBrandCol" prefWidth="137.0" text="Brand" />
+                                    <TableColumn fx:id="poItemNameCol" minWidth="0.0" prefWidth="153.0" text="Name" />
+                                    <TableColumn fx:id="poItemQuanCol" prefWidth="188.0" text="Quantity" />
                                  </columns>
                               </TableView>
-                              <Button layoutX="424.0" layoutY="229.0" mnemonicParsing="false" onAction="#addPOItem" prefHeight="25.0" prefWidth="61.0" text="Add" />
+                              <Button layoutX="294.0" layoutY="347.0" mnemonicParsing="false" onAction="#addPOItem" prefHeight="44.0" prefWidth="83.0" text="Add">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
                            </children>
                         </Pane>
                      </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </TitledPane>
-                  <Button layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#showPOItem" prefHeight="25.0" prefWidth="54.0" text="Show" />
+                  <Button layoutX="320.0" layoutY="344.0" mnemonicParsing="false" onAction="#showPOItem" prefHeight="50.0" prefWidth="100.0" text="Show">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <Label layoutX="439.0" layoutY="52.0" prefHeight="50.0" prefWidth="331.0" text="Add Recieved Goods to Store">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TitledPane animated="false" collapsible="false" layoutX="88.0" layoutY="146.0" prefHeight="446.0" prefWidth="182.0" text="Purchase Order">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="183.0">
+                           <children>
+                              <TableView fx:id="poTableView" prefHeight="399.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="poIDCol" minWidth="0.0" prefWidth="180.0" text="PO ID" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" layoutX="464.0" layoutY="102.0" prefHeight="132.0" prefWidth="657.0" text="Supplier">
+                     <content>
+                        <TableView fx:id="supTable" prefHeight="120.0" prefWidth="655.0">
+                          <columns>
+                            <TableColumn fx:id="supIDCol" prefWidth="65.0" text="ID" />
+                            <TableColumn fx:id="namesupCol" prefWidth="149.0" text="Name" />
+                              <TableColumn fx:id="addrIDCol" prefWidth="261.0" text="Address" />
+                              <TableColumn fx:id="phoneCol" prefWidth="176.0" text="Phone" />
+                          </columns>
+                        </TableView>
+                     </content>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TitledPane>
                </children>
+               <effect>
+                  <InnerShadow />
+               </effect>
             </Pane>
          </content>
       </Tab>
