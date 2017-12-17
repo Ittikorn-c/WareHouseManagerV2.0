@@ -16,8 +16,9 @@ public class MainWareHouse extends Application {
         DataManager dataManager = new DataManager();
         FXMLLoader root = new FXMLLoader(getClass().getResource("/Warehouse/ShowsOrderPage.fxml"));
 
-        primaryStage.setScene(new Scene((Parent) root.load(), 1209, 792));
+        primaryStage.setScene(new Scene((Parent) root.load(), 1209, 885));
         primaryStage.setTitle("Warehouse Management");
+        primaryStage.setResizable(false);
 
         ShowsOrderPageController controller = root.getController();
 

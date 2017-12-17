@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,17 +13,45 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1209.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowsOrderPageController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="885.0" prefWidth="1209.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.controllers.ShowsOrderPageController">
   <tabs>
       <Tab text="Check Requisition">
           <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="604.0">
                   <children>
-                      <TitledPane animated="false" collapsible="false" layoutX="475.0" layoutY="145.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
+                  <GridPane prefHeight="120.0" prefWidth="1209.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="422.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="95.0" prefWidth="1189.0">
+                           <children>
+                              <Label layoutX="18.0" layoutY="44.0" text="Warehouse Management หจก. เพาเวอร์ คอนโทรล">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dateLabel1" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1056.0" layoutY="52.0" prefHeight="27.0" prefWidth="137.0" text="date time">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </GridPane>
+                  <Separator layoutX="11.0" layoutY="108.0" opacity="0.25" prefHeight="11.0" prefWidth="1188.0" />
+                      <TitledPane animated="false" collapsible="false" layoutX="475.0" layoutY="254.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
                           <content>
                               <Pane prefHeight="200.0" prefWidth="200.0">
                                   <children>
@@ -54,21 +83,23 @@
                         <DropShadow />
                      </effect>
                       </TitledPane>
-                      <Button fx:id="pickAllBtn" layoutX="1022.0" layoutY="647.0" mnemonicParsing="false" onAction="#printAllAction" prefHeight="41.0" prefWidth="113.0" text="Print All">
+                      <Button fx:id="pickAllBtn" layoutX="1022.0" layoutY="756.0" mnemonicParsing="false" onAction="#printAllAction" prefHeight="41.0" prefWidth="113.0" text="Print All">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
                         <Font size="20.0" />
-                     </font></Button>
-                      <Button fx:id="showBtn" layoutX="353.0" layoutY="346.0" mnemonicParsing="false" onAction="#showAction" prefHeight="50.0" prefWidth="100.0" text="Show">
+                     </font>
+                  </Button>
+                      <Button fx:id="showBtn" layoutX="353.0" layoutY="455.0" mnemonicParsing="false" onAction="#showAction" prefHeight="50.0" prefWidth="100.0" text="Show">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
                         <Font size="20.0" />
-                     </font></Button>
-                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="145.0" prefHeight="445.0" prefWidth="278.0" text="Requisition">
+                     </font>
+                  </Button>
+                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="254.0" prefHeight="445.0" prefWidth="278.0" text="Requisition">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="359.0" prefWidth="268.0">
                            <children>
@@ -88,12 +119,12 @@
                         <Font size="20.0" />
                      </font>
                   </TitledPane>
-                  <Label layoutX="501.0" layoutY="44.0" prefHeight="45.0" prefWidth="207.0" text="Check Requisition">
+                  <Label layoutX="501.0" layoutY="153.0" prefHeight="45.0" prefWidth="207.0" text="Check Requisition">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="1027.0" layoutY="52.0" mnemonicParsing="false" onAction="#refreshCheckReq" prefHeight="40.0" prefWidth="86.0" text="Refresh" />
+                  <Button layoutX="1027.0" layoutY="161.0" mnemonicParsing="false" onAction="#refreshCheckReq" prefHeight="40.0" prefWidth="86.0" text="Refresh" />
                   </children>
                <effect>
                   <InnerShadow color="#070000" />
@@ -104,7 +135,7 @@
           <content>
               <Pane prefHeight="200.0" prefWidth="200.0">
                   <children>
-                      <TitledPane animated="false" collapsible="false" layoutX="481.0" layoutY="161.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
+                      <TitledPane animated="false" collapsible="false" layoutX="481.0" layoutY="253.0" prefHeight="442.0" prefWidth="681.0" scaleShape="false" text="Items List">
                           <content>
                               <Pane prefHeight="200.0" prefWidth="200.0">
                                   <children>
@@ -135,14 +166,14 @@
                         <DropShadow />
                      </effect>
                       </TitledPane>
-                      <Button layoutX="353.0" layoutY="357.0" mnemonicParsing="false" onAction="#showConfirm" prefHeight="50.0" prefWidth="100.0" text="Show">
+                      <Button layoutX="353.0" layoutY="449.0" mnemonicParsing="false" onAction="#showConfirm" prefHeight="50.0" prefWidth="100.0" text="Show">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font></Button>
-                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="161.0" prefHeight="444.0" prefWidth="270.0" text="Requisition">
+                  <TitledPane animated="false" collapsible="false" layoutX="53.0" layoutY="253.0" prefHeight="444.0" prefWidth="270.0" text="Requisition">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -161,11 +192,36 @@
                         <DropShadow />
                      </effect>
                   </TitledPane>
-                  <Label layoutX="490.0" layoutY="67.0" prefHeight="43.0" prefWidth="230.0" text="Confirm Requisition">
+                  <Label layoutX="490.0" layoutY="159.0" prefHeight="43.0" prefWidth="230.0" text="Confirm Requisition">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <GridPane prefHeight="122.0" prefWidth="1209.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="422.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="95.0" prefWidth="1189.0">
+                           <children>
+                              <Label layoutX="18.0" layoutY="44.0" text="Warehouse Management หจก. เพาเวอร์ คอนโทรล">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dateLabel2" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1056.0" layoutY="52.0" prefHeight="27.0" prefWidth="137.0" text="date time">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="11.0" layoutY="108.0" opacity="0.25" prefHeight="11.0" prefWidth="1188.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </GridPane>
                   </children>
                <effect>
                   <InnerShadow />
@@ -177,7 +233,7 @@
           <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="783.0" prefWidth="1209.0">
                   <children>
-                      <TitledPane animated="false" collapsible="false" layoutX="40.0" layoutY="480.0" prefHeight="212.0" prefWidth="520.0" text="Goods List">
+                      <TitledPane animated="false" collapsible="false" layoutX="40.0" layoutY="580.0" prefHeight="212.0" prefWidth="520.0" text="Goods List">
                           <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="518.0">
                                   <children>
@@ -199,7 +255,7 @@
                         <DropShadow />
                      </effect>
                       </TitledPane>
-                      <TitledPane animated="false" collapsible="false" layoutX="651.0" layoutY="55.0" prefHeight="637.0" prefWidth="516.0" text="Order List">
+                      <TitledPane animated="false" collapsible="false" layoutX="651.0" layoutY="155.0" prefHeight="637.0" prefWidth="516.0" text="Order List">
                           <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="604.0" prefWidth="514.0">
                                   <children>
@@ -222,41 +278,41 @@
                         <DropShadow />
                      </effect>
                       </TitledPane>
-                      <ComboBox fx:id="typeComboBox" layoutX="104.0" layoutY="401.0" onAction="#filterTypeSelect" prefWidth="150.0">
+                      <ComboBox fx:id="typeComboBox" layoutX="104.0" layoutY="501.0" onAction="#filterTypeSelect" prefWidth="150.0">
                      <effect>
                         <DropShadow />
                      </effect></ComboBox>
-                      <ComboBox fx:id="brandComboBox" layoutX="350.0" layoutY="401.0" onAction="#filterBrandSelect" prefWidth="150.0">
+                      <ComboBox fx:id="brandComboBox" layoutX="350.0" layoutY="501.0" onAction="#filterBrandSelect" prefWidth="150.0">
                      <effect>
                         <DropShadow />
                      </effect></ComboBox>
-                      <TextField fx:id="nameTextField" layoutX="104.0" layoutY="437.0" onAction="#filterNameType">
+                      <TextField fx:id="nameTextField" layoutX="104.0" layoutY="537.0" onAction="#filterNameType">
                      <effect>
                         <DropShadow />
                      </effect></TextField>
-                      <Button fx:id="addBtn" layoutX="580.0" layoutY="480.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="20.0" prefWidth="50.0" text="Add ">
+                      <Button fx:id="addBtn" layoutX="580.0" layoutY="580.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="20.0" prefWidth="50.0" text="Add ">
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                      <Button layoutX="575.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="20.0" prefWidth="61.0" text="Remove">
+                      <Button layoutX="575.0" layoutY="650.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="20.0" prefWidth="61.0" text="Remove">
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                      <Button layoutX="398.0" layoutY="705.0" mnemonicParsing="false" onAction="#saveOrder" prefHeight="37.0" prefWidth="102.0" text="Save">
+                      <Button layoutX="398.0" layoutY="805.0" mnemonicParsing="false" onAction="#saveOrder" prefHeight="37.0" prefWidth="102.0" text="Save">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
                         <Font size="16.0" />
                      </font></Button>
-                      <Button layoutX="605.0" layoutY="705.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="32.0" prefWidth="104.0" text="Cancle">
+                      <Button layoutX="605.0" layoutY="805.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="32.0" prefWidth="104.0" text="Cancle">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                      <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="57.0" pickOnBounds="false" prefHeight="235.0" prefWidth="524.0" text="Not enough in warehouse for Requisition ">
+                      <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="157.0" pickOnBounds="false" prefHeight="235.0" prefWidth="524.0" text="Not enough in warehouse for Requisition ">
                           <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="183.0" prefWidth="520.0">
                                   <children>
@@ -279,30 +335,55 @@
                         <DropShadow />
                      </effect>
                       </TitledPane>
-                      <Label layoutX="33.0" layoutY="398.0" text="Type">
+                      <Label layoutX="33.0" layoutY="498.0" text="Type">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                      <Label layoutX="274.0" layoutY="398.0" text="Brand">
+                      <Label layoutX="274.0" layoutY="498.0" text="Brand">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                      <Label layoutX="28.0" layoutY="434.0" text="Name">
+                      <Label layoutX="28.0" layoutY="534.0" text="Name">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label layoutX="447.0" layoutY="14.0" prefHeight="35.0" prefWidth="256.0" text="Create Purchase Order">
+                  <Label layoutX="447.0" layoutY="114.0" prefHeight="35.0" prefWidth="256.0" text="Create Purchase Order">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Text layoutX="36.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers">
+                  <Text layoutX="36.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="supComboBox" layoutX="131.0" layoutY="341.0" prefWidth="150.0" />
-                  <Button layoutX="333.0" layoutY="341.0" mnemonicParsing="false" onAction="#newSupplierAction" text="New Suppliers" />
+                  <ComboBox fx:id="supComboBox" layoutX="131.0" layoutY="441.0" prefWidth="150.0" />
+                  <Button layoutX="333.0" layoutY="441.0" mnemonicParsing="false" onAction="#newSupplierAction" text="New Suppliers" />
+                  <GridPane prefHeight="118.0" prefWidth="1209.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="422.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="95.0" prefWidth="1189.0">
+                           <children>
+                              <Label layoutX="18.0" layoutY="44.0" text="Warehouse Management หจก. เพาเวอร์ คอนโทรล">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dateLabel3" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1056.0" layoutY="52.0" prefHeight="27.0" prefWidth="137.0" text="date time">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="11.0" layoutY="108.0" opacity="0.25" prefHeight="11.0" prefWidth="1188.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </GridPane>
                   </children>
                <effect>
                   <InnerShadow />
@@ -314,7 +395,7 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" layoutX="465.0" layoutY="260.0" prefHeight="442.0" prefWidth="657.0" scaleShape="false" text="Items List">
+                  <TitledPane animated="false" collapsible="false" layoutX="465.0" layoutY="345.0" prefHeight="442.0" prefWidth="657.0" scaleShape="false" text="Items List">
                      <content>
                         <Pane prefHeight="397.0" prefWidth="657.0">
                            <children>
@@ -345,19 +426,19 @@
                         <DropShadow />
                      </effect>
                   </TitledPane>
-                  <Button layoutX="320.0" layoutY="344.0" mnemonicParsing="false" onAction="#showPOItem" prefHeight="50.0" prefWidth="100.0" text="Show">
+                  <Button layoutX="320.0" layoutY="429.0" mnemonicParsing="false" onAction="#showPOItem" prefHeight="50.0" prefWidth="100.0" text="Show">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <Label layoutX="439.0" layoutY="52.0" prefHeight="50.0" prefWidth="331.0" text="Add Recieved Goods to Store">
+                  <Label layoutX="439.0" layoutY="137.0" prefHeight="50.0" prefWidth="331.0" text="Add Recieved Goods to Store">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TitledPane animated="false" collapsible="false" layoutX="88.0" layoutY="146.0" prefHeight="446.0" prefWidth="182.0" text="Purchase Order">
+                  <TitledPane animated="false" collapsible="false" layoutX="88.0" layoutY="231.0" prefHeight="446.0" prefWidth="182.0" text="Purchase Order">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="183.0">
                            <children>
@@ -376,7 +457,7 @@
                         <DropShadow />
                      </effect>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" layoutX="464.0" layoutY="102.0" prefHeight="132.0" prefWidth="657.0" text="Supplier">
+                  <TitledPane animated="false" collapsible="false" layoutX="464.0" layoutY="187.0" prefHeight="132.0" prefWidth="657.0" text="Supplier">
                      <content>
                         <TableView fx:id="supTable" prefHeight="120.0" prefWidth="655.0">
                           <columns>
@@ -394,6 +475,31 @@
                         <DropShadow />
                      </effect>
                   </TitledPane>
+                  <GridPane prefHeight="119.0" prefWidth="1209.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="422.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="95.0" prefWidth="1189.0">
+                           <children>
+                              <Label layoutX="18.0" layoutY="44.0" text="Warehouse Management หจก. เพาเวอร์ คอนโทรล">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dateLabel4" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1056.0" layoutY="52.0" prefHeight="27.0" prefWidth="137.0" text="date time">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="11.0" layoutY="108.0" opacity="0.25" prefHeight="11.0" prefWidth="1188.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </GridPane>
                </children>
                <effect>
                   <InnerShadow />

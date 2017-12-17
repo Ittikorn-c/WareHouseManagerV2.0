@@ -16,8 +16,9 @@ public class MainSale extends Application {
         DataManager dataManager = new DataManager();
         FXMLLoader root = new FXMLLoader(getClass().getResource("/Sale/RequisitionPage.fxml"));
 
-        primaryStage.setScene(new Scene((Parent) root.load(), 1092, 600));
+        primaryStage.setScene(new Scene((Parent) root.load(), 1092, 746));
         primaryStage.setTitle("Warehouse Management for Sale");
+        primaryStage.setResizable(false);
 
         RequisitionPageController controller = root.getController();
         controller.setDataManager(dataManager);

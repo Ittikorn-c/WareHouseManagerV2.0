@@ -16,6 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +52,8 @@ public class RequisitionPageController {
     @FXML
     private TableColumn<RequisitionGoods, Integer> columnReqAmount;
 
-
+    @FXML
+    private Label dateLabel;
 
     private List<Goods> goodsList = new ArrayList<Goods>();
     private ObservableList<Goods> goodsObservableList;
@@ -66,6 +69,8 @@ public class RequisitionPageController {
 
     @FXML
     public void initialize() {
+
+        dateLabel.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
         this.columnGoodsID.setCellValueFactory(new PropertyValueFactory<Goods, Integer>("id"));
         this.columnGoodsType.setCellValueFactory(new PropertyValueFactory<Goods, String>("type"));

@@ -17,6 +17,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,9 +163,17 @@ public class ShowsOrderPageController {
 
     private Requisition selectingReq;
 
+    @FXML
+    private Label dateLabel1, dateLabel2, dateLabel3, dateLabel4;
+
 
     @FXML
     private void initialize(){
+
+        dateLabel1.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        dateLabel2.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        dateLabel3.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        dateLabel4.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
         /* If */
         this.orderIDCol.setCellValueFactory(new PropertyValueFactory<Requisition, Integer>("id"));
@@ -285,6 +295,10 @@ public class ShowsOrderPageController {
             }
         }
         reTableGoods();
+        supList.clear();
+        observableListSup = FXCollections.observableList(supList);
+        supTable.setItems(observableListSup);
+
         poGoodsList.clear();
         poGoodsObservableList = FXCollections.observableList(poGoodsList);
         poItemTableView.setItems(poGoodsObservableList);
