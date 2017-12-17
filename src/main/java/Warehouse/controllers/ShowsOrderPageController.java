@@ -495,6 +495,8 @@ public class ShowsOrderPageController {
     }
 
     public void reTableGoods() {
+        listGoods.clear();
+
         for(Goods g : dataManager.getGoodses()){
             listGoods.add(g);
         }
@@ -790,6 +792,7 @@ public class ShowsOrderPageController {
     public void refreshCheckReq() {
         reTableRe();
         reTableImp();
+        reTableGoods();
     }
 
     @FXML
